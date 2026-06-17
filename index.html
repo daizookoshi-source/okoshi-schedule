@@ -2,689 +2,668 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Okoshi スケジュール</title>
 <style>
+:root {
+  --bg:#070B12;
+  --card:#0E1520;
+  --card2:#131D2B;
+  --border:rgba(180,145,55,0.18);
+  --gold:#C9A840;
+  --gold2:#F0CC6A;
+  --text:#DDE2EC;
+  --text2:#7E8FA6;
+  --text3:#445060;
+  --blue:#4A9EFF;
+  --green:#3DD68C;
+  --red:#FF5F5F;
+  --amber:#FFB340;
+  --purple:#9B8FFF;
+  --teal:#3ECFCF;
+  --orange:#FF8C50;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070B12;--card:#0E1520;--card2:#131D2B;--border:rgba(180,145,55,0.18);--gold:#C9A840;--gold2:#F0CC6A;--text:#DDE2EC;--text2:#7E8FA6;--text3:#445060;--blue:#4A9EFF;--green:#3DD68C;--red:#FF5F5F;--amber:#FFB340;--purple:#9B8FFF;--teal:#3ECFCF;--orange:#FF8C50}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Segoe UI',sans-serif;line-height:1.5;min-height:100vh}
-.header{background:linear-gradient(135deg,#080F1E 0%,#0F1C30 60%,#0A1525 100%);border-bottom:1px solid var(--border);padding:16px 20px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5)}
-.header-top{display:flex;align-items:flex-start;justify-content:space-between;max-width:900px;margin:0 auto}
-.logo{font-size:20px;font-weight:800;letter-spacing:.5px;line-height:1.2}
-.logo-ok{color:var(--text)}.logo-sch{color:var(--gold2)}
-.logo-jp{color:var(--text2);font-size:13px;font-weight:400;margin-top:2px}
-.header-meta{text-align:right;font-size:11px;color:var(--text3);line-height:1.8}
-.header-meta b{color:var(--text2);font-weight:600}
-.nav{max-width:900px;margin:14px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:0}
-.nav::-webkit-scrollbar{display:none}
-.nav-tab{padding:9px 18px;border-radius:10px 10px 0 0;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s;background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid transparent;border-bottom:none;letter-spacing:.3px}
-.nav-tab.active{background:var(--card2);color:var(--gold2);border-color:var(--border);border-bottom:1px solid var(--card2)}
-.nav-tab:hover:not(.active){background:rgba(255,255,255,0.07);color:var(--text2)}
-.nav-badge{display:inline-block;background:var(--red);color:#fff;border-radius:8px;padding:0 5px;font-size:10px;margin-left:4px;vertical-align:1px}
-.nav-badge.amber{background:var(--amber);color:#070B12}
-.section{display:none;max-width:900px;margin:0 auto;padding:20px 14px 40px}
-.section.active{display:block}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px}
-.chip-n{font-size:22px;font-weight:800;color:var(--gold);line-height:1}
-.chip-l{font-size:11px;color:var(--text2);line-height:1.4}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text3)}
-.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
-.day-hd{padding:12px 18px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.day-name{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px;text-transform:uppercase}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;min-height:100vh}
+a{color:var(--blue);text-decoration:none}
+
+/* Header */
+.header{background:linear-gradient(135deg,#0A1020 0%,#0E1828 100%);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;color:#070B12}
+.logo-text{font-size:18px;font-weight:700;color:var(--gold2)}
+.logo-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.header-right{text-align:right}
+.period{font-size:13px;color:var(--text);font-weight:600}
+.updated{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* Tabs */
+.tabs{display:flex;gap:2px;padding:12px 20px 0;background:var(--bg);border-bottom:1px solid var(--border)}
+.tab{padding:8px 16px;border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:500;color:var(--text2);border:1px solid transparent;border-bottom:none;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.tab:hover{color:var(--text);background:var(--card)}
+.tab.active{color:var(--gold2);background:var(--card);border-color:var(--border)}
+.badge{background:var(--red);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;font-weight:700;min-width:18px;text-align:center}
+
+/* Content */
+.content{padding:16px 20px;display:none}
+.content.active{display:block}
+
+/* Day cards */
+.days-grid{display:grid;gap:12px}
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.day-header{background:var(--card2);padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.day-date{font-size:22px;font-weight:700;color:var(--gold2);line-height:1}
+.day-info{flex:1}
+.day-name{font-size:14px;font-weight:600;color:var(--text)}
 .day-name.wkd{color:var(--amber)}
-.day-date{font-size:12px;color:var(--text2);margin-left:8px}
-.day-count{font-size:11px;color:var(--text3);background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:8px}
-.ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,0.04);gap:14px;align-items:flex-start;transition:background .15s}
-.ev:last-child{border-bottom:none}
-.ev:hover{background:rgba(255,255,255,0.02)}
-.ev-time{width:110px;flex-shrink:0;font-size:11.5px;color:var(--text2);font-variant-numeric:tabular-nums;padding-top:2px;line-height:1.3}
-.ev-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.ev-body{flex:1;min-width:0}
-.ev-title{font-size:13.5px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ev-meta{font-size:11.5px;color:var(--text3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.c-mgmt .ev-dot{background:var(--gold)}.c-mgmt .ev-title{color:#E8D090}
-.c-sales .ev-dot{background:var(--blue)}
-.c-ext .ev-dot{background:var(--green)}
-.c-1on1 .ev-dot{background:var(--teal)}
-.c-din .ev-dot{background:var(--purple)}.c-din .ev-title{color:#C5BCFF}
-.c-trv .ev-dot{background:var(--amber)}.c-trv .ev-title{color:#FFCF70}
-.c-sym .ev-dot{background:var(--orange)}.c-sym .ev-title{color:#FFAA70}
-.c-blk .ev-dot{background:var(--text3)}.c-blk .ev-title{color:var(--text3)}
-.free-hd{padding:12px 18px;background:rgba(61,214,140,0.06);border-bottom:1px solid rgba(61,214,140,0.12);display:flex;align-items:center;justify-content:space-between}
-.free-ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(61,214,140,0.08);gap:14px;align-items:center;background:rgba(61,214,140,0.02)}
-.free-ev:last-child{border-bottom:none}
-.free-time{width:130px;flex-shrink:0;font-size:11.5px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700}
-.free-dur{background:rgba(61,214,140,0.12);color:var(--green);font-size:11px;font-weight:800;padding:2px 9px;border-radius:8px;white-space:nowrap;flex-shrink:0}
-.free-note{font-size:12.5px;color:var(--text2);flex:1}
-.free-na .free-dur{background:rgba(255,255,255,0.05);color:var(--text3)}
-.free-na .free-note{color:var(--text3)}
-.act{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:12px;margin-bottom:12px;padding:15px 18px}
-.act.red{border-left-color:var(--red)}.act.blue{border-left-color:var(--blue)}.act.purple{border-left-color:var(--purple)}
-.act-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
-.act-subj{font-size:14px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
-.badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;letter-spacing:.3px}
-.b-red{background:rgba(255,95,95,.14);color:var(--red);border:1px solid rgba(255,95,95,.25)}
-.b-amb{background:rgba(255,179,64,.14);color:var(--amber);border:1px solid rgba(255,179,64,.25)}
-.b-blu{background:rgba(74,158,255,.14);color:var(--blue);border:1px solid rgba(74,158,255,.25)}
-.b-pur{background:rgba(155,143,255,.14);color:var(--purple);border:1px solid rgba(155,143,255,.25)}
-.act-from{font-size:11.5px;color:var(--text3);margin-bottom:5px}
-.act-body{font-size:13px;color:var(--text2);line-height:1.6}
-.act-body strong{color:var(--text);font-weight:600}
-.act-body a{color:var(--blue);text-decoration:none;font-size:12px}
-.act.done{opacity:0.4;border-left-color:var(--text3)!important}
-.act.done .act-subj{text-decoration:line-through;color:var(--text3)}
-.act-footer{display:flex;justify-content:flex-end;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05)}
-.done-btn{font-size:11px;font-weight:700;padding:5px 16px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text3);transition:all .2s;letter-spacing:.4px;user-select:none;font-family:inherit}
-.done-btn:hover:not(.is-done){background:rgba(61,214,140,0.1);border-color:rgba(61,214,140,0.35);color:var(--green)}
-.done-btn.is-done{background:rgba(61,214,140,0.08);border-color:rgba(61,214,140,0.25);color:var(--green)}
-.done-btn.is-done:hover{background:rgba(255,95,95,0.08);border-color:rgba(255,95,95,0.25);color:var(--red)}
-.sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.sec-title em{color:var(--gold);font-style:normal;font-size:15px;vertical-align:-1px;margin-right:6px}
-.free-day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
-@media(max-width:600px){.ev-time,.free-time{width:88px}.header{padding:14px 14px 0}.nav-tab{padding:8px 13px;font-size:11px}.ev,.free-ev{padding:10px 12px;gap:10px}.act,.day-hd{padding:13px 14px}.section{padding:14px 10px 40px}}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:rgba(180,145,55,.3);border-radius:2px}
+.day-count{font-size:11px;color:var(--text3);margin-top:1px}
+.events-list{padding:8px}
+
+/* Events */
+.event{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:6px;margin-bottom:4px;border-left:3px solid var(--text3)}
+.event:last-child{margin-bottom:0}
+.event-time{font-size:11px;color:var(--text2);white-space:nowrap;min-width:90px;padding-top:1px;font-feature-settings:"tnum"}
+.event-body{flex:1;min-width:0}
+.event-title{font-size:13px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.event-loc{font-size:11px;color:var(--text3);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.c-mgmt{border-left-color:var(--purple)!important;background:rgba(155,143,255,0.06)}
+.c-mgmt .event-title{color:#C0BAFF}
+.c-sales{border-left-color:var(--blue)!important;background:rgba(74,158,255,0.06)}
+.c-sales .event-title{color:#8DC6FF}
+.c-ext{border-left-color:var(--teal)!important;background:rgba(62,207,207,0.06)}
+.c-ext .event-title{color:#7DE5E5}
+.c-1on1{border-left-color:var(--green)!important;background:rgba(61,214,140,0.06)}
+.c-1on1 .event-title{color:#80E8B0}
+.c-din{border-left-color:var(--orange)!important;background:rgba(255,140,80,0.06)}
+.c-din .event-title{color:#FFAD7A}
+.c-trv{border-left-color:var(--amber)!important;background:rgba(255,179,64,0.06)}
+.c-trv .event-title{color:#FFD080}
+.c-sym{border-left-color:var(--gold)!important;background:rgba(201,168,64,0.08)}
+.c-sym .event-title{color:var(--gold2)}
+.c-blk{border-left-color:var(--text3)!important;background:rgba(68,80,96,0.15)}
+.c-blk .event-title{color:var(--text2)}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 12px;margin-top:4px}
+.leg{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+
+/* Free slots */
+.free-day{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px}
+.free-day-title{font-size:13px;font-weight:600;color:var(--gold2);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.slot{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:6px;background:rgba(61,214,140,0.05);border:1px solid rgba(61,214,140,0.12);margin-bottom:5px}
+.slot:last-child{margin-bottom:0}
+.slot-time{font-size:12px;font-weight:600;color:var(--green);min-width:110px;font-feature-settings:"tnum"}
+.slot-dur{font-size:11px;color:var(--text2);min-width:50px}
+.slot-ctx{font-size:11px;color:var(--text3)}
+
+/* Action cards */
+.act-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
+.act-badge{border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;white-space:nowrap;align-self:flex-start;margin-top:1px}
+.b-red{background:rgba(255,95,95,0.15);color:var(--red);border:1px solid rgba(255,95,95,0.3)}
+.b-amb{background:rgba(255,179,64,0.12);color:var(--amber);border:1px solid rgba(255,179,64,0.25)}
+.b-blu{background:rgba(74,158,255,0.12);color:var(--blue);border:1px solid rgba(74,158,255,0.25)}
+.b-pur{background:rgba(155,143,255,0.12);color:var(--purple);border:1px solid rgba(155,143,255,0.25)}
+.act-body{flex:1;min-width:0}
+.act-subject{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.act-meta{font-size:11px;color:var(--text2);margin-bottom:4px}
+.act-summary{font-size:12px;color:var(--text2);line-height:1.4}
+.act-done{margin-top:6px}
+.done-btn{font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid var(--border);background:var(--card2);color:var(--text2);cursor:pointer;transition:all 0.2s}
+.done-btn:hover{border-color:var(--green);color:var(--green)}
+.done-btn.checked{border-color:var(--green);color:var(--green);background:rgba(61,214,140,0.08)}
+.act-card.done-card{opacity:0.45}
+
+/* Section header */
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-title{font-size:16px;font-weight:700;color:var(--gold2)}
+.sec-count{font-size:12px;color:var(--text2)}
 </style>
 </head>
 <body>
-<header class="header">
-  <div class="header-top">
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">O</div>
     <div>
-      <div class="logo"><span class="logo-ok">Okoshi </span><span class="logo-sch">スケジュール</span></div>
-      <div class="logo-jp">2026年6月17日（水）&mdash; 6月23日（火）</div>
+      <div class="logo-text">Okoshi スケジュール</div>
+      <div class="logo-sub">大越 大造 — GMO サイバーセキュリティ byイエラエ 取締役</div>
     </div>
-    <div class="header-meta"><div><b>IERAE SECURITY</b></div><div>Updated: 2026/06/17</div></div>
   </div>
-  <nav class="nav">
-    <div class="nav-tab active" onclick="show('schedule',this)">&#128197; 7-Day Schedule</div>
-    <div class="nav-tab" onclick="show('free',this)">&#11036; Free Slots</div>
-    <div class="nav-tab" onclick="show('mail',this)">&#9993;&#65039; Mail<span class="nav-badge">6</span></div>
-    <div class="nav-tab" onclick="show('slack',this)">&#128172; Slack<span class="nav-badge amber">5</span></div>
-  </nav>
-</header>
+  <div class="header-right">
+    <div class="period">2026/06/17（水）— 2026/06/23（月）</div>
+    <div class="updated">Updated: 2026/06/17</div>
+  </div>
+</div>
 
-<section id="schedule" class="section active">
-  <div class="chips">
-    <div class="chip"><div class="chip-n">46</div><div class="chip-l">Total<br>Events</div></div>
-    <div class="chip"><div class="chip-n">7</div><div class="chip-l">Days<br>Covered</div></div>
-    <div class="chip"><div class="chip-n">3</div><div class="chip-l">Dinner /<br>Offsite</div></div>
-  </div>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('schedule',this)">📅 7-Day Schedule</div>
+  <div class="tab" onclick="switchTab('free',this)">⬜ Free Slots</div>
+  <div class="tab" onclick="switchTab('mail',this)">✉️ Mail <span class="badge" id="mail-badge">8</span></div>
+  <div class="tab" onclick="switchTab('slack',this)">💬 Slack <span class="badge" id="slack-badge">3</span></div>
+</div>
+
+<!-- ========== SCHEDULE TAB ========== -->
+<div id="tab-schedule" class="content active">
   <div class="legend">
-    <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>経営・幹部</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>営業・予実</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>社外・来訪</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--teal)"></div>1on1</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--purple)"></div>会食</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--amber)"></div>移動・宿泊</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--orange)"></div>シンポジウム</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--text3)"></div>ブロック</div>
+    <span class="leg"><span class="leg-dot" style="background:var(--purple)"></span>経営/幹部</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--blue)"></span>営業</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--teal)"></span>社外/顧客</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--green)"></span>1on1</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--orange)"></span>会食</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--amber)"></span>移動/宿泊</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--gold)"></span>シンポジウム</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--text3)"></span>Reserved</span>
   </div>
+  <div class="days-grid">
 
-  <!-- 6/17 (水) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">WED</span>
-        <span class="day-date">6月17日（水）</span>
+    <!-- 6/17 Wed -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">17</div>
+        <div class="day-info">
+          <div class="day-name">水曜日 — June 17</div>
+          <div class="day-count">8 イベント</div>
+        </div>
       </div>
-      <span class="day-count">8 events</span>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">08:05&nbsp;&ndash;&nbsp;08:35</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta">ブロック・在室確認</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">10:00&nbsp;&ndash;&nbsp;11:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【確定】BLACKPANDA 平岡様</div><div class="ev-meta">Ierae alliance discussion / Google Meet</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">日々の業務調整・情報共有（管理課 / 任意）</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">11:30&nbsp;&ndash;&nbsp;12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">公共営業定例MTG</div><div class="ev-meta">奥野文和</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:15&nbsp;&ndash;&nbsp;13:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Anthropic社 東條氏あいさつ</div><div class="ev-meta">社外来訪 / Anthropic Japan</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">13:00&nbsp;&ndash;&nbsp;14:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">ドメインホスティングシナジーMTG</div><div class="ev-meta">GMOグループ合同定例 / Zoom（毎月第2・4水）</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:30&nbsp;&ndash;&nbsp;15:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">定時取締役会</div><div class="ev-meta">決議：関連当事者取引・臨時株主総会招集</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">16:00&nbsp;&ndash;&nbsp;16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">MTG</div><div class="ev-meta">星・大越 / Zoom</div></div>
-    </div>
-  </div>
-
-  <!-- 6/18 (木) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">THU</span>
-        <span class="day-date">6月18日（木）</span>
+      <div class="events-list">
+        <div class="event c-ext">
+          <div class="event-time">10:00 – 11:00</div>
+          <div class="event-body"><div class="event-title">【確定】BLACKPANDA 平岡様</div><div class="event-loc">Google Meet / Ierae alliance discussion</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 11:30</div>
+          <div class="event-body"><div class="event-title">管理課業務MTG</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">11:30 – 12:00</div>
+          <div class="event-body"><div class="event-title">公共営業定例MTG</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">12:15 – 13:00</div>
+          <div class="event-body"><div class="event-title">Anthropic社 東條氏あいさつ</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">13:00 – 14:00</div>
+          <div class="event-body"><div class="event-title">ドメインホスティングシナジーMTG</div><div class="event-loc">Zoom（GMO-I/PB/BRS/DigiR/GSHD/イエラエ）</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">14:30 – 15:30</div>
+          <div class="event-body"><div class="event-title">定時取締役会</div><div class="event-loc">セルリアン16F C3 / Zoom</div></div>
+        </div>
+        <div class="event c-1on1">
+          <div class="event-time">16:00 – 16:30</div>
+          <div class="event-body"><div class="event-title">MTG（星）</div><div class="event-loc">Zoom — 高山さん候補者面接</div></div>
+        </div>
       </div>
-      <span class="day-count">14 events</span>
     </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">09:30&nbsp;&ndash;&nbsp;09:50</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1 on 1 Hirano / Okoshi</div><div class="ev-meta">平野健一</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">日々の業務調整・情報共有</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【MGSEC/定例MTG】事業関連</div><div class="ev-meta">MUFG-GMO Security / Teams</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">11:15&nbsp;&ndash;&nbsp;12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">「ネットのセキュリティもGMO」</div><div class="ev-meta">Zoom / 営業連携</div></div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">12:00&nbsp;&ndash;&nbsp;12:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【木曜12:00-12:30】GMO顔パスキープ</div><div class="ev-meta">萩坂・国本・大越</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">13:00&nbsp;&ndash;&nbsp;14:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Anduril（仮）</div><div class="ev-meta">社外パートナー商談（調整中）</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">14:00&nbsp;&ndash;&nbsp;14:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">offsec 入札価格のご相談</div><div class="ev-meta">村松健 / 入札価格調整</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:30&nbsp;&ndash;&nbsp;15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">MTG</div><div class="ev-meta">星・大越 / Zoom</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">15:00&nbsp;&ndash;&nbsp;16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">ネットde診断 チーム合同定例</div><div class="ev-meta">市川・大蔵ほかチーム</div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">16:30&nbsp;&ndash;&nbsp;16:50</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1 on 1 Hao / Okoshi</div><div class="ev-meta">羽尾和宏</div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:00&nbsp;&ndash;&nbsp;17:20</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1on1 with 萩坂</div><div class="ev-meta">萩坂拓哉</div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:30&nbsp;&ndash;&nbsp;17:50</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1on1 with 中山</div><div class="ev-meta">中山純一</div></div>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">18:00&nbsp;&ndash;&nbsp;18:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">移動</div><div class="ev-meta">会食会場へ</div></div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:30&nbsp;&ndash;&nbsp;21:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">会食 JBサービス</div><div class="ev-meta">マーブル（センチュリーコート丸の内）</div></div>
-    </div>
-  </div>
 
-  <!-- 6/19 (金) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">FRI</span>
-        <span class="day-date">6月19日（金）</span>
+    <!-- 6/18 Thu -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">18</div>
+        <div class="day-info">
+          <div class="day-name">木曜日 — June 18</div>
+          <div class="day-count">10 イベント + 会食</div>
+        </div>
       </div>
-      <span class="day-count">4 events</span>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">09:00&nbsp;&ndash;&nbsp;16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Reserved</div><div class="ev-meta">終日ブロック</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">日々の業務調整・情報共有</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">13:30&nbsp;&ndash;&nbsp;14:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【外Z】GMO Preferred Security 定例</div><div class="ev-meta">第1・3金曜 / 奥野文和・橋爪周ほか</div></div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:30&nbsp;&ndash;&nbsp;22:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">会食 YANASE</div><div class="ev-meta">ディナー</div></div>
-    </div>
-  </div>
-
-  <!-- 6/20 (土) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name wkd">SAT</span>
-        <span class="day-date">6月20日（土）</span>
+      <div class="events-list">
+        <div class="event c-1on1">
+          <div class="event-time">09:30 – 09:50</div>
+          <div class="event-body"><div class="event-title">1 on 1 Hirano / Okoshi</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 11:30</div>
+          <div class="event-body"><div class="event-title">管理課業務MTG</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 12:00</div>
+          <div class="event-body"><div class="event-title">【MGSEC/定例MTG】事業関連</div><div class="event-loc">Microsoft Teams</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">11:15 – 12:00</div>
+          <div class="event-body"><div class="event-title">「ネットのセキュリティもGMO」プロジェクト</div><div class="event-loc">Zoom</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">12:00 – 12:30</div>
+          <div class="event-body"><div class="event-title">【木曜12:00–12:30】GMO顔パスキープ</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">13:00 – 14:00</div>
+          <div class="event-body"><div class="event-title">Anduril（仮）</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">14:00 – 14:30</div>
+          <div class="event-body"><div class="event-title">offsec 入札価格のご相談</div><div class="event-loc">関東管区警察局 Learn Enterprise×12</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">14:30 – 15:00</div>
+          <div class="event-body"><div class="event-title">MTG（星）Salesforce開発アップデート</div><div class="event-loc">Zoom</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">15:00 – 16:00</div>
+          <div class="event-body"><div class="event-title">ネットde診断 チーム合同定例</div></div>
+        </div>
+        <div class="event c-1on1">
+          <div class="event-time">16:30 – 16:50</div>
+          <div class="event-body"><div class="event-title">1 on 1 Hao / Okoshi</div></div>
+        </div>
+        <div class="event c-1on1">
+          <div class="event-time">17:00 – 17:20</div>
+          <div class="event-body"><div class="event-title">1on1 with 萩坂</div></div>
+        </div>
+        <div class="event c-1on1">
+          <div class="event-time">17:30 – 17:50</div>
+          <div class="event-body"><div class="event-title">1on1 with 中山</div></div>
+        </div>
+        <div class="event c-trv">
+          <div class="event-time">18:00 – 18:30</div>
+          <div class="event-body"><div class="event-title">移動</div></div>
+        </div>
+        <div class="event c-din">
+          <div class="event-time">18:30 – 21:30</div>
+          <div class="event-body"><div class="event-title">会食 JBサービス</div><div class="event-loc">マーブル（センチュリーコート丸の内）4名 ¥30,000</div></div>
+        </div>
       </div>
-      <span class="day-count">6 events — 熱海出張</span>
     </div>
-    <div class="ev c-trv">
-      <div class="ev-time">10:27&nbsp;&ndash;&nbsp;11:12</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">こだま817号</div><div class="ev-meta">出発: 東京駅</div></div>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">11:55&nbsp;&ndash;&nbsp;12:15</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">貸切バス</div><div class="ev-meta">熱海駅 &rarr; 会場</div></div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">12:00&nbsp;&ndash;&nbsp;21:15</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">熱海シンポジウム（Day 1）</div><div class="ev-meta">社内シンポジウム・GMOグループ幹部</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">13:40&nbsp;&ndash;&nbsp;14:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">コネクト社相談 PART 1</div><div class="ev-meta">西山（GMO） / シンポジウム内サイドMTG</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">14:40&nbsp;&ndash;&nbsp;15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">コネクト社相談 PART 2</div><div class="ev-meta">PART 1 継続分</div></div>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">20:00&nbsp;&ndash;&nbsp;翌08:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">宿泊: レクトーレ 熱海小嵐</div><div class="ev-meta">TKP Hotels &amp; Resorts</div></div>
-    </div>
-  </div>
 
-  <!-- 6/21 (日) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name wkd">SUN</span>
-        <span class="day-date">6月21日（日）</span>
+    <!-- 6/19 Fri -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">19</div>
+        <div class="day-info">
+          <div class="day-name">金曜日 — June 19</div>
+          <div class="day-count">3 イベント + 会食</div>
+        </div>
       </div>
-      <span class="day-count">1 event — 熱海シンポジウム Day 2</span>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">08:30&nbsp;&ndash;&nbsp;12:40</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">熱海シンポジウム（Day 2）</div><div class="ev-meta">午前セッション終了後 解散</div></div>
-    </div>
-  </div>
-
-  <!-- 6/22 (月) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">MON</span>
-        <span class="day-date">6月22日（月）</span>
+      <div class="events-list">
+        <div class="event c-blk">
+          <div class="event-time">09:00 – 16:30</div>
+          <div class="event-body"><div class="event-title">Reserved（ブロック）</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 11:30</div>
+          <div class="event-body"><div class="event-title">管理課業務MTG</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">13:30 – 14:00</div>
+          <div class="event-body"><div class="event-title">【外Z】GMO Preferred Security 定例</div><div class="event-loc">Zoom（第1,3 金曜日）</div></div>
+        </div>
+        <div class="event c-din">
+          <div class="event-time">18:30 – 22:30</div>
+          <div class="event-body"><div class="event-title">会食 YANASE</div></div>
+        </div>
       </div>
-      <span class="day-count">7 events</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">日々の業務調整・情報共有</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:30&nbsp;&ndash;&nbsp;14:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">KELA ミーティング</div><div class="ev-meta">ジェフリーズ証券 矢野 / サイバーセキュリティ</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:30&nbsp;&ndash;&nbsp;13:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【ジェフリーズ証券：矢野】KELAミーティング</div><div class="ev-meta">北橋・k.ide@flatt.tech 同席</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">16:30&nbsp;&ndash;&nbsp;17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">公共 / AIシス開</div><div class="ev-meta">野辺賢一・冨神泰弘</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">17:00&nbsp;&ndash;&nbsp;18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">廣惠本部長 GMO-6部門定例キープ</div><div class="ev-meta">GMO グループ 6 部門定例</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">18:00&nbsp;&ndash;&nbsp;18:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">[Keep] 営業本部 Mgr</div><div class="ev-meta">山口・坂本ほか / Zoom</div></div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:30&nbsp;&ndash;&nbsp;21:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">JBS 牧田社長訪問 / 会食</div><div class="ev-meta">虎ノ門ヒルズ ステーションタワー 20F / 牧田・中川同席</div></div>
-    </div>
-  </div>
 
-  <!-- 6/23 (火) -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">TUE</span>
-        <span class="day-date">6月23日（火）</span>
+    <!-- 6/20 Sat -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">20</div>
+        <div class="day-info">
+          <div class="day-name wkd">土曜日 — June 20（熱海シンポジウム）</div>
+          <div class="day-count">6 イベント + 宿泊</div>
+        </div>
       </div>
-      <span class="day-count">6 events</span>
+      <div class="events-list">
+        <div class="event c-trv">
+          <div class="event-time">10:27 – 11:12</div>
+          <div class="event-body"><div class="event-title">こだま817号</div><div class="event-loc">東京(10:27)→熱海(11:12) グリーン 8号車4A席</div></div>
+        </div>
+        <div class="event c-trv">
+          <div class="event-time">11:55 – 12:15</div>
+          <div class="event-body"><div class="event-title">貸切バス</div></div>
+        </div>
+        <div class="event c-sym">
+          <div class="event-time">12:00 – 21:15</div>
+          <div class="event-body"><div class="event-title">熱海シンポジウム（熱海後楽園ホテル）</div><div class="event-loc">基調講演・協賛セッション・意見交換会・ナイトセッション</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">13:40 – 14:00</div>
+          <div class="event-body"><div class="event-title">コネクト社相談 PART1</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">14:40 – 15:00</div>
+          <div class="event-body"><div class="event-title">コネクト社相談 PART2</div></div>
+        </div>
+        <div class="event c-trv">
+          <div class="event-time">20:00 – 翌08:00</div>
+          <div class="event-body"><div class="event-title">宿泊 レクトーレ 熱海小嵐</div><div class="event-loc">TKP Hotels & Resorts ¥22,000</div></div>
+        </div>
+      </div>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00&nbsp;&ndash;&nbsp;11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">日々の業務調整・情報共有</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">12:00&nbsp;&ndash;&nbsp;12:45</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【枠確保】大規模提案レビュー会</div><div class="ev-meta">萩坂・寺村ほか / 資料準備要</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">16:30&nbsp;&ndash;&nbsp;17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">MGSEC 経営会議</div><div class="ev-meta">MUFG-GMO Security / Teams</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">17:00&nbsp;&ndash;&nbsp;18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">[Keep] MTG — 営業本部</div><div class="ev-meta">相澤・高梨・中村ほか / Zoom</div></div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">18:00&nbsp;&ndash;&nbsp;19:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">IERAE FOCUS #13</div><div class="ev-meta">寺村・岸谷・水野ほか</div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">19:00&nbsp;&ndash;&nbsp;20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">FIX 面談: 松尾 雄一郎さん</div><div class="ev-meta">古海・小高同席 / 30日がデッドライン</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- FREE SLOTS -->
-<section id="free" class="section">
-  <div class="sec-title"><em>&#11036;</em>Free Slots &mdash; 30分以上の空き時間（09:00〜22:00）</div>
+    <!-- 6/21 Sun -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">21</div>
+        <div class="day-info">
+          <div class="day-name wkd">日曜日 — June 21（熱海シンポジウム DAY2）</div>
+          <div class="day-count">1 イベント</div>
+        </div>
+      </div>
+      <div class="events-list">
+        <div class="event c-sym">
+          <div class="event-time">08:30 – 12:40</div>
+          <div class="event-body"><div class="event-title">熱海シンポジウム DAY2</div><div class="event-loc">講演2・特別講演2・パネルディスカッション「能動的サイバー防御どうやるの？」</div></div>
+        </div>
+      </div>
+    </div>
 
-  <!-- 6/17 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--gold)">WED 6/17（水）</span>
-      <span style="font-size:11px;color:var(--text3)">3 slots</span>
+    <!-- 6/22 Mon -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">22</div>
+        <div class="day-info">
+          <div class="day-name">月曜日 — June 22</div>
+          <div class="day-count">6 イベント + 会食</div>
+        </div>
+      </div>
+      <div class="events-list">
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 11:30</div>
+          <div class="event-body"><div class="event-title">管理課業務MTG</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">12:30 – 14:00</div>
+          <div class="event-body"><div class="event-title">KELA</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">12:30 – 13:30</div>
+          <div class="event-body"><div class="event-title">【ジェフリーズ証券：矢野】KELAミーティング（サイバーセキュリティ）</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">16:30 – 17:00</div>
+          <div class="event-body"><div class="event-title">公共/AIシス開</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">17:00 – 18:00</div>
+          <div class="event-body"><div class="event-title">廣惠本部長 GMO‐6部門定例キープ</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">18:00 – 18:30</div>
+          <div class="event-body"><div class="event-title">[Keep] 営業本部 Mgr</div><div class="event-loc">Zoom</div></div>
+        </div>
+        <div class="event c-din">
+          <div class="event-time">18:30 – 21:00</div>
+          <div class="event-body"><div class="event-title">JBS 牧田社長訪問/会食</div><div class="event-loc">虎ノ門ヒルズ ステーションタワー20F</div></div>
+        </div>
+      </div>
     </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 &ndash; 10:00</div>
-      <div class="free-dur">60 min</div>
-      <div class="free-note">&#8594; 次: BLACKPANDA 平岡様</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">15:30 &ndash; 16:00</div>
-      <div class="free-dur">30 min</div>
-      <div class="free-note">前: 定時取締役会 &#8594; 次: MTG（星）</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">16:30 &ndash; 22:00</div>
-      <div class="free-dur">5h 30m</div>
-      <div class="free-note">前: MTG 終了後 / 夜フリー</div>
-    </div>
-  </div>
 
-  <!-- 6/18 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--gold)">THU 6/18（木）</span>
-      <span style="font-size:11px;color:var(--text3)">3 slots</span>
+    <!-- 6/23 Mon -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">23</div>
+        <div class="day-info">
+          <div class="day-name">月曜日 — June 23</div>
+          <div class="day-count">6 イベント</div>
+        </div>
+      </div>
+      <div class="events-list">
+        <div class="event c-mgmt">
+          <div class="event-time">11:00 – 11:30</div>
+          <div class="event-body"><div class="event-title">管理課業務MTG</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">12:00 – 12:45</div>
+          <div class="event-body"><div class="event-title">【枠確保】大規模提案レビュー会</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">16:30 – 17:00</div>
+          <div class="event-body"><div class="event-title">MGSEC 経営会議</div><div class="event-loc">Teams</div></div>
+        </div>
+        <div class="event c-sales">
+          <div class="event-time">17:00 – 18:00</div>
+          <div class="event-body"><div class="event-title">[Keep] MTG - 営業本部</div><div class="event-loc">Zoom</div></div>
+        </div>
+        <div class="event c-mgmt">
+          <div class="event-time">18:00 – 19:00</div>
+          <div class="event-body"><div class="event-title">IERAE FOCUS #13</div></div>
+        </div>
+        <div class="event c-ext">
+          <div class="event-time">19:00 – 20:00</div>
+          <div class="event-body"><div class="event-title">FIX 面談：松尾 雄一郎さん</div></div>
+        </div>
+      </div>
     </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 &ndash; 09:30</div>
-      <div class="free-dur">30 min</div>
-      <div class="free-note">&#8594; 次: 1on1 Hirano</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:50 &ndash; 11:00</div>
-      <div class="free-dur">70 min</div>
-      <div class="free-note">前: 1on1 Hirano &#8594; 次: 管理課業務MTG</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">16:00 &ndash; 16:30</div>
-      <div class="free-dur">30 min</div>
-      <div class="free-note">前: ネットde診断定例 &#8594; 次: 1on1 Hao</div>
-    </div>
-  </div>
 
-  <!-- 6/19 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--gold)">FRI 6/19（金）</span>
-      <span style="font-size:11px;color:var(--text3)">1 slot — Reserved 終日</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">16:30 &ndash; 18:30</div>
-      <div class="free-dur">120 min</div>
-      <div class="free-note">前: Reserved 解除後 &#8594; 次: 会食 YANASE（18:30）</div>
-    </div>
-  </div>
+  </div><!-- /days-grid -->
+</div>
 
-  <!-- 6/20 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--amber)">SAT 6/20（土）— 熱海出張</span>
-      <span style="font-size:11px;color:var(--text3)">1 slot</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 &ndash; 10:27</div>
-      <div class="free-dur">87 min</div>
-      <div class="free-note">&#8594; 次: こだま817号（東京駅 10:27発）</div>
-    </div>
-  </div>
+<!-- ========== FREE SLOTS TAB ========== -->
+<div id="tab-free" class="content">
+  <div class="sec-header"><div class="sec-title">⬜ 空き時間（09:00–22:00、30分以上）</div></div>
 
-  <!-- 6/21 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--amber)">SUN 6/21（日）— 熱海シンポ後</span>
-      <span style="font-size:11px;color:var(--text3)">1 slot</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">12:40 &ndash; 22:00</div>
-      <div class="free-dur">9h 20m</div>
-      <div class="free-note">前: 熱海シンポジウム Day 2 終了後 / 帰宅後フリー</div>
-    </div>
-  </div>
-
-  <!-- 6/22 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--gold)">MON 6/22（月）</span>
-      <span style="font-size:11px;color:var(--text3)">3 slots</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 &ndash; 11:00</div>
-      <div class="free-dur">120 min</div>
-      <div class="free-note">&#8594; 次: 管理課業務MTG（11:00）</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 &ndash; 12:30</div>
-      <div class="free-dur">60 min</div>
-      <div class="free-note">前: 管理課業務MTG &#8594; 次: KELA（12:30）</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">14:00 &ndash; 16:30</div>
-      <div class="free-dur">150 min</div>
-      <div class="free-note">前: KELA &#8594; 次: 公共/AIシス開（16:30）</div>
-    </div>
+  <div class="free-day">
+    <div class="free-day-title">6/17（水）</div>
+    <div class="slot"><div class="slot-time">09:00 – 10:00</div><div class="slot-dur">60 分</div><div class="slot-ctx">→ BLACKPANDA MTG まで</div></div>
+    <div class="slot"><div class="slot-time">13:00 – 14:30</div><div class="slot-dur">90 分</div><div class="slot-ctx">Anthropic東條氏あいさつ後 → 定時取締役会まで</div></div>
+    <div class="slot"><div class="slot-time">15:30 – 16:00</div><div class="slot-dur">30 分</div><div class="slot-ctx">取締役会後 → MTG（星）まで</div></div>
+    <div class="slot"><div class="slot-time">16:30 – 22:00</div><div class="slot-dur">330 分</div><div class="slot-ctx">MTG（星）後 → 終日フリー</div></div>
   </div>
 
-  <!-- 6/23 -->
-  <div class="free-day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--gold)">TUE 6/23（火）</span>
-      <span style="font-size:11px;color:var(--text3)">3 slots</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 &ndash; 11:00</div>
-      <div class="free-dur">120 min</div>
-      <div class="free-note">&#8594; 次: 管理課業務MTG（11:00）</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 &ndash; 12:00</div>
-      <div class="free-dur">30 min</div>
-      <div class="free-note">前: 管理課業務MTG &#8594; 次: 大規模提案レビュー（12:00）</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">12:45 &ndash; 16:30</div>
-      <div class="free-dur">3h 45m</div>
-      <div class="free-note">前: 大規模提案レビュー &#8594; 次: MGSEC 経営会議（16:30）</div>
-    </div>
-  </div>
-</section>
-
-<!-- MAIL -->
-<section id="mail" class="section">
-  <div class="sec-title"><em>&#9993;&#65039;</em>Mail &mdash; 返信・対応が必要なメール</div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">【ジョブカン承認依頼】株式会社Linkship — 新規取引の承認と与信限度額の決定</div>
-      <span class="badge b-red">要承認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 申請者: 岡田直子 &nbsp;|&nbsp; 2026-06-17 08:27 JST</div>
-    <div class="act-body">新規取引申請（進行中）。<strong>与信限度額の承認</strong>が必要です。ジョブカン上で閲覧・承認をお願いします。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/18（木）</div>
+    <div class="slot"><div class="slot-time">09:00 – 09:30</div><div class="slot-dur">30 分</div><div class="slot-ctx">→ 1on1 Hirano まで</div></div>
+    <div class="slot"><div class="slot-time">09:50 – 11:00</div><div class="slot-dur">70 分</div><div class="slot-ctx">1on1 Hirano後 → 管理課業務MTGまで</div></div>
+    <div class="slot"><div class="slot-time">12:30 – 13:00</div><div class="slot-dur">30 分</div><div class="slot-ctx">顔パスキープ後 → Andurilまで</div></div>
+    <div class="slot"><div class="slot-time">16:00 – 16:30</div><div class="slot-dur">30 分</div><div class="slot-ctx">ネットde診断定例後 → 1on1 Haoまで</div></div>
   </div>
 
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">【ジョブカン承認依頼】アスクル株式会社 — 新規取引の承認と与信限度額の決定</div>
-      <span class="badge b-red">要承認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 申請者: 岡田直子 &nbsp;|&nbsp; 2026-06-17 08:15 JST</div>
-    <div class="act-body">新規取引申請（進行中）。<strong>与信限度額の承認</strong>が必要です。ジョブカン上で確認・承認をお願いします。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/19（金）</div>
+    <div class="slot"><div class="slot-time">16:30 – 18:30</div><div class="slot-dur">120 分</div><div class="slot-ctx">Reserved終了後 → 会食YANASEまで</div></div>
   </div>
 
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">【ジョブカン承認依頼】Loglass生成AI利用特約 — 契約の締結（合体版）</div>
-      <span class="badge b-red">要承認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 申請者: 山中修一 &nbsp;|&nbsp; 2026-06-17 08:01 JST</div>
-    <div class="act-body">Loglass生成AI利用特約の契約締結申請（進行中）。<strong>ジョブカンで契約承認</strong>が必要です。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/20（土）熱海移動日</div>
+    <div class="slot"><div class="slot-time">09:00 – 10:27</div><div class="slot-dur">87 分</div><div class="slot-ctx">→ こだま817号 東京駅まで</div></div>
   </div>
 
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">コメント通知: GMOインターネット株式会社 発注書（proofpoint 構築＋RCS8時間）</div>
-      <span class="badge b-amb">要確認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 申請者: 森田仁美 &nbsp;|&nbsp; 2026-06-17 07:44 JST</div>
-    <div class="act-body">申請にコメントおよびファイルが添付されました。<strong>Salesforce / ジョブカンで承認フローを確認</strong>の上、対応をお願いします。なおSlackで「スタバ7月増額案件の承認も停止中」との連絡あり（森田仁美）。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/21（日）熱海シンポジウムDAY2</div>
+    <div class="slot"><div class="slot-time">12:40 – 22:00</div><div class="slot-dur">560 分</div><div class="slot-ctx">シンポジウム終了後 → フリー（帰京後）</div></div>
   </div>
 
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">【Blackpanda】本日のお礼と資料について</div>
-      <span class="badge b-blu">要返信</span>
-    </div>
-    <div class="act-from">reiri.takahashi@blackpanda.com &nbsp;|&nbsp; CC: masaki.hiraoka / jin.sugahara &nbsp;|&nbsp; 2026-06-17 08:23 JST</div>
-    <div class="act-body">本日MTG（10:00〜）のお礼メール。<strong>IR-1の卸値・パートナー契約についてはSB C&amp;S様へ確認</strong>、最新営業資料はBox共有あり。折り返し確認・返信が必要です。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/22（月）</div>
+    <div class="slot"><div class="slot-time">09:00 – 11:00</div><div class="slot-dur">120 分</div><div class="slot-ctx">→ 管理課業務MTGまで</div></div>
+    <div class="slot"><div class="slot-time">11:30 – 12:30</div><div class="slot-dur">60 分</div><div class="slot-ctx">管理課業務MTG後 → KELAまで</div></div>
+    <div class="slot"><div class="slot-time">14:00 – 16:30</div><div class="slot-dur">150 分</div><div class="slot-ctx">KELA後 → 公共/AIシス開まで</div></div>
   </div>
 
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">Zoom MTG アセット完成 — 採用面接・年収交渉サマリー（大越・星勇太）</div>
-      <span class="badge b-amb">要確認</span>
-    </div>
-    <div class="act-from">no-reply@zoom.us &nbsp;|&nbsp; 2026-06-17 07:27 JST</div>
-    <div class="act-body">GMO-CSIの星勇太による採用候補者への年収交渉MTGの要約。<strong>希望年収700万円・実質800万超の提案内容を確認</strong>。Zoom上でアクションアイテムも確認ください。</div>
-  </div>
-</section>
-
-<!-- SLACK -->
-<section id="slack" class="section">
-  <div class="sec-title"><em>&#128172;</em>Slack &mdash; 返信が必要なメッセージ</div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">スタバ（スターバックス）7月増額案件 — Salesforce承認が停止中</div>
-      <span class="badge b-red">要承認</span>
-    </div>
-    <div class="act-from">#div_aisys_backoffice &nbsp;|&nbsp; 森田仁美 &rarr; 清水亜美 &nbsp;|&nbsp; 2026-06-17 10:05 JST</div>
-    <div class="act-body">「大越さんの承認が珍しく進んでいない」との報告。<strong>Salesforce上で商談変更申請を承認</strong>しないと、見積書作成・受注ステータス移行ができない状態です。本日中の承認を要請されています。</div>
+  <div class="free-day">
+    <div class="free-day-title">6/23（月）</div>
+    <div class="slot"><div class="slot-time">09:00 – 11:00</div><div class="slot-dur">120 分</div><div class="slot-ctx">→ 管理課業務MTGまで</div></div>
+    <div class="slot"><div class="slot-time">11:30 – 12:00</div><div class="slot-dur">30 分</div><div class="slot-ctx">管理課業務MTG後 → 大規模提案レビュー会まで</div></div>
+    <div class="slot"><div class="slot-time">12:45 – 16:30</div><div class="slot-dur">225 分</div><div class="slot-ctx">大規模提案レビュー後 → MGSEC経営会議まで</div></div>
+    <div class="slot"><div class="slot-time">20:00 – 22:00</div><div class="slot-dur">120 分</div><div class="slot-ctx">松尾さん面談後 → 終日フリー</div></div>
   </div>
 
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">ZcomMongolia案件 — 仮出し可否・対応辞退の判断</div>
-      <span class="badge b-amb">要返信</span>
+</div>
+
+<!-- ========== MAIL TAB ========== -->
+<div id="tab-mail" class="content">
+  <div class="sec-header"><div class="sec-title">✉️ 要対応メール</div><div class="sec-count" id="mail-count">8 件</div></div>
+
+  <div class="act-card" id="mail-1">
+    <div class="act-badge b-red">至急</div>
+    <div class="act-body">
+      <div class="act-subject">閲覧可能な申請が新規登録されました：株式会社Linkship</div>
+      <div class="act-meta">jobcanwf@donuts.ne.jp — 2026/06/17 08:15 — 申請者: 岡田 直子</div>
+      <div class="act-summary">新規取引の承認と与信限度額の決定申請。取締役承認が必要。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-1',this)">✓ 完了</button></div>
     </div>
-    <div class="act-from">#sales_cs推進部 &nbsp;|&nbsp; 野辺賢一 &nbsp;|&nbsp; 2026-06-16 13:57 JST</div>
-    <div class="act-body">①ソースコード診断担当・資格情報の仮出し可否、②対応不可案件の打合せ辞退可否、の<strong>2点についての判断</strong>を求められています。返信をお願いします。</div>
   </div>
 
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">アライアンス営業部の問題報告 — 連絡放置・SFDC運用問題</div>
-      <span class="badge b-amb">要確認</span>
+  <div class="act-card" id="mail-2">
+    <div class="act-badge b-red">至急</div>
+    <div class="act-body">
+      <div class="act-subject">閲覧可能な申請が新規登録されました：アスクル株式会社</div>
+      <div class="act-meta">jobcanwf@donuts.ne.jp — 2026/06/17 08:27 — 申請者: 岡田 直子</div>
+      <div class="act-summary">新規取引の承認と与信限度額の決定申請。取締役承認が必要。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-2',this)">✓ 完了</button></div>
     </div>
-    <div class="act-from">DM &nbsp;|&nbsp; 鈴木正泰 &rarr; 大越 &nbsp;|&nbsp; 2026-06-16 14:13 JST</div>
-    <div class="act-body">アライアンス営業部（羽尾担当）で<strong>顧客・社内への連絡を数週間放置・SFDCの運用問題が頻発</strong>との報告。再三改善依頼も改善されていない。代理店数字へも影響大。大越さんへの報告が上がっているか確認を求めています。</div>
   </div>
 
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">6/23（火）面談: 松尾雄一郎さん — 6/30がデッドライン</div>
-      <span class="badge b-blu">要確認</span>
+  <div class="act-card" id="mail-3">
+    <div class="act-badge b-amb">要返信</div>
+    <div class="act-body">
+      <div class="act-subject">【Blackpanda】本日のお礼と資料について</div>
+      <div class="act-meta">reiri.takahashi@blackpanda.com / masaki.hiraoka@blackpanda.com — 2026/06/17 08:23</div>
+      <div class="act-summary">本日の協業MTGお礼。IR-1の卸値やパートナー契約はSB C&amp;S様へ確認要。最新営業資料リンクあり。平岡氏も重ねてお礼メール送信。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-3',this)">✓ 完了</button></div>
     </div>
-    <div class="act-from">Group DM &nbsp;|&nbsp; 小高健士 &rarr; 大越 &nbsp;|&nbsp; 2026-06-17 09:33 JST</div>
-    <div class="act-body">「6/23（火）19時〜の面談を確定でお願いしたい」との依頼。<strong>6/30がデッドライン</strong>で、大越さんとの面談後、週内に方向性を決めれば間に合うスケジュール感。すでにカレンダーに FIX 面談として登録済み。確認・承諾返信をお願いします。</div>
   </div>
 
-  <div class="act purple">
-    <div class="act-hd">
-      <div class="act-subj">投資戦略 Team5案件 — キックオフMTG設定依頼</div>
-      <span class="badge b-pur">要返信</span>
+  <div class="act-card" id="mail-4">
+    <div class="act-badge b-amb">確認</div>
+    <div class="act-body">
+      <div class="act-subject">対応策レビュー 発注書送付の件</div>
+      <div class="act-meta">nakamura14861@nichigas.co.jp（日本ガス）— 2026/06/17 08:33</div>
+      <div class="act-summary">対応策レビューの発注書がメール添付（分離ダウンロード方式）で送付。担当: 岩田 宛。受領確認・PM連携が必要。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-4',this)">✓ 完了</button></div>
     </div>
-    <div class="act-from">Group DM &nbsp;|&nbsp; 投資戦略メンバー &rarr; 大越・牧田 &nbsp;|&nbsp; 2026-06-17 15:41 JST</div>
-    <div class="act-body">「Team5の件、投資戦略では案件タスクとして未認識だったためキックオフMTGをお願いしたい」との依頼。<strong>投資戦略メンバーから日程調整の連絡</strong>が来る予定。内田の予定が新卒面接で混んでいるため、チームMTGを希望。</div>
   </div>
-</section>
+
+  <div class="act-card" id="mail-5">
+    <div class="act-badge b-blu">情報</div>
+    <div class="act-body">
+      <div class="act-subject">ご契約面に関する内容（関西空港 ACCT脆弱性診断）</div>
+      <div class="act-meta">shinichi.kimura@gmo-cybersecurity.com → yoshio.sawada@kansai-airports.co.jp — 2026/06/17 08:18</div>
+      <div class="act-summary">100万円以上の取引でDocuSign締結が必要かどうか確認中。パーチェスワン利用条件の確認。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-5',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+  <div class="act-card" id="mail-6">
+    <div class="act-badge b-blu">情報</div>
+    <div class="act-body">
+      <div class="act-subject">GMO AI Day 6月25日（木）終日</div>
+      <div class="act-meta">nasa-information@gmo.jp — 2026/06/17 08:31 — 全社配信</div>
+      <div class="act-summary">6/25（木）はGMO AI Day。AIを活かした業務実践日。午後よりパートナーLIVE開催予定。次回: 7/23。予定削除厳禁。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-6',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+  <div class="act-card" id="mail-7">
+    <div class="act-badge b-blu">完了通知</div>
+    <div class="act-body">
+      <div class="act-subject">閲覧可能な申請が承認完了になりました：【PT課】AI利用（Genspark）2ヶ月分</div>
+      <div class="act-meta">jobcanwf@donuts.ne.jp — 2026/06/17 08:13 — 申請者: 嶋田 裕</div>
+      <div class="act-summary">Genspark 6月・7月分のAI利用申請が承認完了。対応不要。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-7',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+  <div class="act-card" id="mail-8">
+    <div class="act-badge b-pur">古いUNREAD</div>
+    <div class="act-body">
+      <div class="act-subject">案件相談の件【FBJ_小林_日本冶金工業】</div>
+      <div class="act-meta">toshinori.kobayashi.wt@fujifilm.com — 2026/02/06〜継続スレッド</div>
+      <div class="act-summary">富士フイルムBIJ経由 日本冶金工業の脆弱性診断案件。稟議決裁済み・発注手続き中。2/23週の日程調整中（未読スレッド残存）。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('mail-8',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== SLACK TAB ========== -->
+<div id="tab-slack" class="content">
+  <div class="sec-header"><div class="sec-title">💬 Slack 要返信メッセージ</div><div class="sec-count" id="slack-count">3 件</div></div>
+
+  <div class="act-card" id="slack-1">
+    <div class="act-badge b-red">未返信</div>
+    <div class="act-body">
+      <div class="act-subject">#team-上席執行役員会 — 寺村 亮一</div>
+      <div class="act-meta">2026/06/04 14:04 JST</div>
+      <div class="act-summary">「代表キープで宿題として出た」件について @大越 @牧田 へメンション。内容詳細の確認・返答が必要。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('slack-1',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+  <div class="act-card" id="slack-2">
+    <div class="act-badge b-amb">DM未返信</div>
+    <div class="act-body">
+      <div class="act-subject">DM — 鈴木 奈央子</div>
+      <div class="act-meta">2026/04/17 14:58 JST</div>
+      <div class="act-summary">「大越さん、どのような状況でしょうか！」とDMで状況確認のメンション。未返信。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('slack-2',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+  <div class="act-card" id="slack-3">
+    <div class="act-badge b-amb">要確認</div>
+    <div class="act-body">
+      <div class="act-subject">#team-上席執行役員会 — 玉木 壮</div>
+      <div class="act-meta">2026/02/19 17:39 JST</div>
+      <div class="act-summary">Preferred Networks合弁会社設立（3/2 IG臨時取締役会決議、5日大会議発表）について @大越 @牧田 @岸谷 @Lin にメンション。ガバナンス上の問題ありとして意見を求めている。</div>
+      <div class="act-done"><button class="done-btn" onclick="toggleDone('slack-3',this)">✓ 完了</button></div>
+    </div>
+  </div>
+
+</div>
 
 <script>
-function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
-function injectDoneButtons(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var footer=document.createElement('div');footer.className='act-footer';var btn=document.createElement('button');btn.className='done-btn';btn.textContent='✓ 完了';btn.addEventListener('click',function(){toggleDone(card,i,sec,btn);});footer.appendChild(btn);card.appendChild(footer);});});}
-function toggleDone(card,i,sec,btn){var key='done_'+sec+'_'+i;if(card.classList.contains('done')){card.classList.remove('done');btn.textContent='✓ 完了';btn.classList.remove('is-done');try{localStorage.removeItem(key);}catch(e){}}else{card.classList.add('done');btn.textContent='↩ 戻す';btn.classList.add('is-done');try{localStorage.setItem(key,'1');}catch(e){}}updateBadges();}
-function restoreState(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var key='done_'+sec+'_'+i;try{if(localStorage.getItem(key)==='1'){card.classList.add('done');var btn=card.querySelector('.done-btn');if(btn){btn.textContent='↩ 戻す';btn.classList.add('is-done');}}}catch(e){}});});}
-function updateBadges(){['mail','slack'].forEach(function(sec){var total=document.querySelectorAll('#'+sec+' .act').length;var done=document.querySelectorAll('#'+sec+' .act.done').length;var remaining=total-done;var tabIdx=sec==='mail'?3:4;var badge=document.querySelector('.nav-tab:nth-child('+tabIdx+') .nav-badge');if(badge){badge.textContent=remaining;badge.style.opacity=remaining===0?'0':'1';}});}
-document.addEventListener('DOMContentLoaded',function(){injectDoneButtons();restoreState();updateBadges();});
+function switchTab(name, el) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleDone(id, btn) {
+  const card = document.getElementById(id);
+  const key = 'done_' + id;
+  const isDone = localStorage.getItem(key) === '1';
+  if (isDone) {
+    localStorage.removeItem(key);
+    card.classList.remove('done-card');
+    btn.classList.remove('checked');
+    btn.textContent = '✓ 完了';
+  } else {
+    localStorage.setItem(key, '1');
+    card.classList.add('done-card');
+    btn.classList.add('checked');
+    btn.textContent = '✓ 完了済み';
+  }
+  updateBadges();
+}
+
+function updateBadges() {
+  let mailDone = 0, slackDone = 0;
+  for (let i = 1; i <= 8; i++) { if (localStorage.getItem('done_mail-' + i) === '1') mailDone++; }
+  for (let i = 1; i <= 3; i++) { if (localStorage.getItem('done_slack-' + i) === '1') slackDone++; }
+  document.getElementById('mail-badge').textContent = 8 - mailDone;
+  document.getElementById('slack-badge').textContent = 3 - slackDone;
+  document.getElementById('mail-count').textContent = (8 - mailDone) + ' 件';
+  document.getElementById('slack-count').textContent = (3 - slackDone) + ' 件';
+}
+
+// Restore done state on load
+window.addEventListener('DOMContentLoaded', () => {
+  for (let i = 1; i <= 8; i++) {
+    const id = 'mail-' + i;
+    if (localStorage.getItem('done_' + id) === '1') {
+      const card = document.getElementById(id);
+      const btn = card ? card.querySelector('.done-btn') : null;
+      if (card) card.classList.add('done-card');
+      if (btn) { btn.classList.add('checked'); btn.textContent = '✓ 完了済み'; }
+    }
+  }
+  for (let i = 1; i <= 3; i++) {
+    const id = 'slack-' + i;
+    if (localStorage.getItem('done_' + id) === '1') {
+      const card = document.getElementById(id);
+      const btn = card ? card.querySelector('.done-btn') : null;
+      if (card) card.classList.add('done-card');
+      if (btn) { btn.classList.add('checked'); btn.textContent = '✓ 完了済み'; }
+    }
+  }
+  updateBadges();
+});
 </script>
 </body>
 </html>
