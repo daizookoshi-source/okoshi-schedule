@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Okoshi Schedule — 2026年6月21日（日）— 6月27日（土）</title>
+<title>大越スケジュール 2026年6月22日〜28日</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#070B12;--card:#0E1520;--card2:#131D2B;--border:rgba(180,145,55,0.18);--gold:#C9A840;--gold2:#F0CC6A;--text:#DDE2EC;--text2:#7E8FA6;--text3:#445060;--blue:#4A9EFF;--green:#3DD68C;--red:#FF5F5F;--amber:#FFB340;--purple:#9B8FFF;--teal:#3ECFCF;--orange:#FF8C50}
@@ -84,6 +84,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .done-btn.is-done:hover{background:rgba(255,95,95,0.08);border-color:rgba(255,95,95,0.25);color:var(--red)}
 .sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
 .sec-title em{color:var(--gold);font-style:normal;font-size:15px;vertical-align:-1px;margin-right:6px}
+.no-ev{padding:18px;font-size:13px;color:var(--text3);text-align:center}
 @media(max-width:600px){.ev-time,.free-time{width:88px}.header{padding:14px 14px 0}.nav-tab{padding:8px 13px;font-size:11px}.ev,.free-ev{padding:10px 12px;gap:10px}.act,.day-hd{padding:13px 14px}.section{padding:14px 10px 40px}}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -95,777 +96,532 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="header">
   <div class="header-top">
     <div>
-      <div class="logo"><span class="logo-ok">Okoshi</span><span class="logo-sch"> Schedule</span></div>
-      <div class="logo-jp">2026年6月21日（日）— 6月27日（土）</div>
+      <div class="logo"><span class="logo-ok">OKOSHI</span> <span class="logo-sch">SCHEDULE</span></div>
+      <div class="logo-jp">2026年6月22日（月）— 6月28日（日）</div>
     </div>
     <div class="header-meta">
-      <div>Updated: <b>2026/06/21</b></div>
-      <div>GMOサイバーセキュリティ byイエラエ</div>
-      <div>大越 大造 取締役</div>
+      <div><b>大越 大造</b> 専務取締役</div>
+      <div>IERAE SECURITY / GMOサイバーセキュリティ</div>
+      <div>Updated: 2026/06/22</div>
     </div>
   </div>
   <nav class="nav">
-    <div class="nav-tab active" onclick="show('schedule',this)">今週</div>
+    <div class="nav-tab active" onclick="show('cal',this)">スケジュール</div>
     <div class="nav-tab" onclick="show('free',this)">空き時間</div>
-    <div class="nav-tab" onclick="show('mail',this)">メール<span class="nav-badge">7</span></div>
-    <div class="nav-tab" onclick="show('slack',this)">Slack<span class="nav-badge amber">5</span></div>
+    <div class="nav-tab" onclick="show('mail',this)">メール<span class="nav-badge">5</span></div>
+    <div class="nav-tab" onclick="show('slack',this)">Slack<span class="nav-badge amber">4</span></div>
   </nav>
 </div>
 
-<!-- ===== SCHEDULE ===== -->
-<div id="schedule" class="section active">
+<!-- ========== SCHEDULE ========== -->
+<div id="cal" class="section active">
   <div class="chips">
-    <div class="chip"><div class="chip-n">44</div><div class="chip-l">イベント<br>6/21 — 6/27</div></div>
-    <div class="chip"><div class="chip-n">7</div><div class="chip-l">要対応<br>メール</div></div>
-    <div class="chip"><div class="chip-n">5</div><div class="chip-l">Slack<br>未返信</div></div>
-    <div class="chip"><div class="chip-n">2</div><div class="chip-l">会食<br>今週</div></div>
+    <div class="chip"><div class="chip-n">46</div><div class="chip-l">イベント<br>7日間</div></div>
+    <div class="chip"><div class="chip-n">5</div><div class="chip-l">未対応<br>メール</div></div>
+    <div class="chip"><div class="chip-n">4</div><div class="chip-l">Slack<br>未返信</div></div>
+    <div class="chip"><div class="chip-n">17</div><div class="chip-l">空き<br>スロット</div></div>
   </div>
   <div class="legend">
-    <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>経営</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>経営・幹部</div>
     <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>営業</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>社外</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>社外・顧客</div>
     <div class="leg"><div class="leg-dot" style="background:var(--teal)"></div>1on1</div>
     <div class="leg"><div class="leg-dot" style="background:var(--purple)"></div>会食</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--amber)"></div>移動/宿泊</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--orange)"></div>登壇/シンポ</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--orange)"></div>シンポジウム</div>
     <div class="leg"><div class="leg-dot" style="background:var(--text3)"></div>ブロック</div>
   </div>
 
-  <!-- 6/21 日 -->
+  <!-- 6/22 MON -->
   <div class="day-card">
     <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name wkd">SUN</span>
-        <span class="day-date">6月21日（日）</span>
-      </div>
-      <span class="day-count">2件</span>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">〜 08:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">レクトーレ 熱海小嵐（TKP Hotels &amp; Resorts）</div>
-        <div class="ev-meta">宿泊 〜 チェックアウト ／ 熱海小嵐</div>
-      </div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">08:30 – 12:40</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">熱海シンポジウム</div>
-        <div class="ev-meta">熱海（午後 移動）</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/22 月 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">MON</span>
-        <span class="day-date">6月22日（月）</span>
-      </div>
-      <span class="day-count">9件</span>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">sales-kanri / hoshi / ami.shimizu</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:30 – 13:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【ジェフリーズ証券：矢野】KELAサイバーセキュリティ案件ミーティング</div>
-        <div class="ev-meta">kitabashigmo / k.ide@flatt.tech / jiro-hiroe / nishiyama</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 14:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Internal：Proofpoint全社展開について</div>
-        <div class="ev-meta">Zoom ／ hoshi / sakakihara / shinji.abe</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">14:30 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Team T5 提案</div>
-        <div class="ev-meta">セルリアンタワー 7-A会議室 ／ hikohiro.lin / makita / so.tamaki</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">16:00 – 16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">MGSEC 経営会議</div>
-        <div class="ev-meta">Microsoft Teams ／ kenichi.hirano / mufg-gmo.security</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">16:30 – 17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">公共 / AIシス開</div>
-        <div class="ev-meta">kenichi.nobe / yasuhiro.togami / hitomi.morita / fumikazu.okuno</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">17:00 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">廣惠本部長 GMO‐6部門定例キープ</div>
-        <div class="ev-meta">定例ブロック</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">18:00 – 18:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">[Keep] 営業本部 Mgr</div>
-        <div class="ev-meta">Zoom ／ nobuhiko.yamaguchi / tomoya.sakamoto / kazuhiro.hao / kuramoto</div>
-      </div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:30 – 21:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">JBS 牧田社長訪問 / 会食</div>
-        <div class="ev-meta">虎ノ門ヒルズ ステーションタワー 20F ／ makita / nakagawa@brightsconsulting</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/23 火 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">TUE</span>
-        <span class="day-date">6月23日（火）</span>
-      </div>
-      <span class="day-count">8件</span>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">09:30 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Blackpanda IR-1 取り扱い協議</div>
-        <div class="ev-meta">shinji.abe / teramura / kazuhiro.hao</div>
-      </div>
+      <div><span class="day-name">MON</span><span class="day-date">6月22日（月）</span></div>
+      <div class="day-count">10件</div>
     </div>
     <div class="ev c-blk">
-      <div class="ev-time">10:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Reserved</div>
-        <div class="ev-meta">ブロック済み</div>
-      </div>
+      <div class="ev-time">08:05 – 08:35</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta">ワーキングロケーション</div></div>
     </div>
     <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">sales-kanri / hoshi / ami.shimizu</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">12:00 – 12:45</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【大規模】JPX / 東京海上 / ZOZO レビュー会（3件）</div>
-        <div class="ev-meta">takuya.hagisaka / teramura / fumikazu.okuno / kazuhiro.hao</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">15:30 – 16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">MTG — Salesforce 開発</div>
-        <div class="ev-meta">Zoom ／ hidemasa.togashi / hoshi</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">17:00 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">[Keep] MTG — 営業本部</div>
-        <div class="ev-meta">Zoom ／ aizawa / akane.takanashi / ayaka.nakamura 他</div>
-      </div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">18:00 – 19:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">IERAE FOCUS #13</div>
-        <div class="ev-meta">teramura / kishiya / sarii.mizuno / yoda 他</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">19:00 – 20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">FIX 面談：松尾 雄一郎さん</div>
-        <div class="ev-meta">daiki.furumi / odaka / chifumi.iwasaki</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/24 水 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">WED</span>
-        <span class="day-date">6月24日（水）</span>
-      </div>
-      <span class="day-count">8件</span>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">09:00 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">※最終調整【mtg】エスコン &amp; ADPass</div>
-        <div class="ev-meta">Zoom ／ takuya.hagisaka</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">09:00 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">G代表政策室 Zoom ミーティング</div>
-        <div class="ev-meta">Zoom ／ takuya.hagisaka / shunsuke_shichinohe@fighters.co.jp</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">09:30 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">公共営業 定例MTG</div>
-        <div class="ev-meta">fumikazu.okuno</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">sales-kanri / hoshi / ami.shimizu</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">13:00 – 13:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">コンプライアンス委員会</div>
-        <div class="ev-meta">セルリアンタワー 7-C会議室 ／ makoto.yamaguchi / hiroki.sato / naoko.suzuki</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">イエラエ全社会</div>
-        <div class="ev-meta">全社</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">15:00 – 16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【視聴必須】GMOアワード2026 授賞式</div>
-        <div class="ev-meta">GMOグループ全社配信</div>
-      </div>
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">4名参加</div></div>
     </div>
     <div class="ev c-ext">
-      <div class="ev-time">18:00 – 20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">日本防衛装備工業会 電子部会 意見交換会</div>
-        <div class="ev-meta">ryo.satomura / fumikazu.okuno</div>
-      </div>
+      <div class="ev-time">12:30 – 13:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【ジェフリーズ証券：矢野】KELAミーティング</div><div class="ev-meta">6名参加</div></div>
     </div>
-  </div>
-
-  <!-- 6/25 木 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">THU</span>
-        <span class="day-date">6月25日（木）</span>
-      </div>
-      <span class="day-count">13件</span>
+    <div class="ev c-mgmt">
+      <div class="ev-time">14:00 – 14:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Internal：Proofpoint全社展開について</div><div class="ev-meta">Zoom · 4名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">14:30 – 15:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Team T5提案</div><div class="ev-meta">セルリアンタワー-7-A会議室 · 5名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">16:00 – 16:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">MGSEC 経営会議</div><div class="ev-meta">Teams · 6名参加</div></div>
     </div>
     <div class="ev c-1on1">
-      <div class="ev-time">09:30 – 09:50</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1 on 1 — Hirano / Okoshi</div>
-        <div class="ev-meta">kenichi.hirano / mufg-gmo.security</div>
-      </div>
+      <div class="ev-time">16:30 – 17:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">公共/AIシス開</div><div class="ev-meta">9名参加</div></div>
     </div>
     <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">sales-kanri / hoshi / ami.shimizu</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">「ネットのセキュリティもGMO」</div>
-        <div class="ev-meta">Zoom</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【視聴必須】2026年 第6回 GMO AIセミナー</div>
-        <div class="ev-meta">GMOグループ全社配信</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">12:00 – 12:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【木曜12:00–12:30】GMO 顔パスキープ</div>
-        <div class="ev-meta">takuya.hagisaka / masashi.kunimoto / yasuhiro.togami / tatsuo.hori</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:30 – 13:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">フクラス</div>
-        <div class="ev-meta">セルリアンタワー</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">ALSOK 定例会 ※6月度</div>
-        <div class="ev-meta">nobuhiko.yamaguchi / tetsuya.shinmi</div>
-      </div>
+      <div class="ev-time">17:00 – 18:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">廣惠本部長 GMO‐6部門定例キープ</div><div class="ev-meta">定例</div></div>
     </div>
     <div class="ev c-sales">
-      <div class="ev-time">15:00 – 16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">ネットde診断 チーム合同定例</div>
-        <div class="ev-meta">ryo.ichikawa / taichi.okura / natsumi.honda / teramura</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">16:00 – 17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【確定】CyberDD 足立様 来社＠セルリアンD5</div>
-        <div class="ev-meta">takuya.hagisaka</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:20 – 17:40</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1on1 with 中山</div>
-        <div class="ev-meta">junichi.nakayama</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:40 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1on1 with 萩坂</div>
-        <div class="ev-meta">takuya.hagisaka</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">18:00 – 18:20</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1 on 1 — Hao / Okoshi</div>
-        <div class="ev-meta">kazuhiro.hao</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">19:00 – 20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">仮：カジュアル面談</div>
-        <div class="ev-meta">daiki.furumi / odaka / teramura</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/26 金 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name">FRI</span>
-        <span class="day-date">6月26日（金）</span>
-      </div>
-      <span class="day-count">4件</span>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">sales-kanri / hoshi / ami.shimizu</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【MGSEC/定例MTG】事業関連</div>
-        <div class="ev-meta">Microsoft Teams ／ kenichi.hirano / mufg-gmo.security</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">12:30 – 13:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">フクラス</div>
-        <div class="ev-meta">セルリアンタワー</div>
-      </div>
+      <div class="ev-time">18:00 – 18:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">[Keep] 営業本部 Mgr</div><div class="ev-meta">Zoom · 11名参加</div></div>
     </div>
     <div class="ev c-din">
-      <div class="ev-time">19:00 – 23:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">会食 with 岡田さん / アスタリスク</div>
-        <div class="ev-meta">築地Kyビル 2F — 中央区築地4-7-5 ／ murashima / makita</div>
-      </div>
+      <div class="ev-time">18:30 – 21:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">JBS牧田社長訪問/会食</div><div class="ev-meta">虎ノ門ヒルズ ステーションタワー · 4名</div></div>
     </div>
   </div>
 
-  <!-- 6/27 土 -->
+  <!-- 6/23 TUE -->
   <div class="day-card">
     <div class="day-hd">
-      <div style="display:flex;align-items:center">
-        <span class="day-name wkd">SAT</span>
-        <span class="day-date">6月27日（土）</span>
-      </div>
-      <span class="day-count">0件</span>
+      <div><span class="day-name">TUE</span><span class="day-date">6月23日（火）</span></div>
+      <div class="day-count">8件</div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">09:30 – 10:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Blackpanda IR-1 取り扱い協議</div><div class="ev-meta">4名参加</div></div>
     </div>
     <div class="ev c-blk">
-      <div class="ev-time">終日</div>
-      <div class="ev-dot" style="background:var(--green)"></div>
-      <div class="ev-body">
-        <div class="ev-title" style="color:var(--green)">予定なし — 完全フリー</div>
-        <div class="ev-meta">09:00 – 22:00 空き</div>
-      </div>
+      <div class="ev-time">10:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Reserved</div><div class="ev-meta">ブロック</div></div>
     </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">4名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">12:00 – 12:45</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【大規模】JPX / 東京海上 / ZOZO レビュー会（3件）</div><div class="ev-meta">13名参加</div></div>
+    </div>
+    <div class="ev c-1on1">
+      <div class="ev-time">15:30 – 16:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">MTG - Salesforce開発</div><div class="ev-meta">Zoom · 3名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">17:00 – 18:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">[Keep] MTG - 営業本部</div><div class="ev-meta">Zoom · 51名参加</div></div>
+    </div>
+    <div class="ev c-sym">
+      <div class="ev-time">18:00 – 19:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">IERAE FOCUS #13</div><div class="ev-meta">163名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">19:00 – 20:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">FIX 面談：松尾 雄一郎さん</div><div class="ev-meta">4名参加</div></div>
+    </div>
+  </div>
+
+  <!-- 6/24 WED -->
+  <div class="day-card">
+    <div class="day-hd">
+      <div><span class="day-name">WED</span><span class="day-date">6月24日（水）</span></div>
+      <div class="day-count">8件</div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">09:00 – 10:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">G代表政策室 Zoom ミーティング</div><div class="ev-meta">Zoom · 3名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">09:00 – 10:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">※最終調整【mtg】エスコン＆ADPass</div><div class="ev-meta">Zoom · 2名参加</div></div>
+    </div>
+    <div class="ev c-sales">
+      <div class="ev-time">09:30 – 10:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">公共営業定例MTG</div><div class="ev-meta">2名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">4名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">13:00 – 13:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">コンプライアンス委員会</div><div class="ev-meta">セルリアンタワー-7-C · 11名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">14:00 – 15:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">イエラエ全社会</div><div class="ev-meta">全社</div></div>
+    </div>
+    <div class="ev c-sym">
+      <div class="ev-time">15:00 – 16:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【視聴必須】GMOアワード2026 授賞式</div><div class="ev-meta">75名参加</div></div>
+    </div>
+    <div class="ev c-sym">
+      <div class="ev-time">18:00 – 20:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">日本防衛装備工業会電子部会意見交換会</div><div class="ev-meta">3名参加</div></div>
+    </div>
+  </div>
+
+  <!-- 6/25 THU -->
+  <div class="day-card">
+    <div class="day-hd">
+      <div><span class="day-name">THU</span><span class="day-date">6月25日（木）</span></div>
+      <div class="day-count">15件</div>
+    </div>
+    <div class="ev c-blk">
+      <div class="ev-time">08:05 – 08:35</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta">ワーキングロケーション</div></div>
+    </div>
+    <div class="ev c-1on1">
+      <div class="ev-time">09:30 – 09:50</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">1 on 1 Hirano/Okoshi</div><div class="ev-meta">3名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">4名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">11:00 – 12:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">「ネットのセキュリティもGMO」</div><div class="ev-meta">Zoom</div></div>
+    </div>
+    <div class="ev c-sym">
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【視聴必須】2026年第6回 GMO AIセミナー</div><div class="ev-meta">75名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">12:00 – 12:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【木曜12:00-12:30】GMO顔パスキープ</div><div class="ev-meta">5名参加</div></div>
+    </div>
+    <div class="ev c-blk">
+      <div class="ev-time">12:30 – 13:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">フクラス</div><div class="ev-meta">セルリアン</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">14:00 – 15:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">ALSOK定例会 ※6月度</div><div class="ev-meta">3名参加</div></div>
+    </div>
+    <div class="ev c-blk">
+      <div class="ev-time">14:00 – 15:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">Reserved</div><div class="ev-meta">ブロック</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">15:00 – 16:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">ネットde診断 チーム合同定例</div><div class="ev-meta">21名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">16:00 – 17:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【確定】CyberDD足立様 来社予定＠セルリアンD5</div><div class="ev-meta">2名参加</div></div>
+    </div>
+    <div class="ev c-1on1">
+      <div class="ev-time">17:20 – 17:40</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">1on1 with 中山</div><div class="ev-meta">2名参加</div></div>
+    </div>
+    <div class="ev c-1on1">
+      <div class="ev-time">17:40 – 18:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">1on1 with 萩坂</div><div class="ev-meta">2名参加</div></div>
+    </div>
+    <div class="ev c-1on1">
+      <div class="ev-time">18:00 – 18:20</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">1 on 1 Hao/Okoshi</div><div class="ev-meta">2名参加</div></div>
+    </div>
+    <div class="ev c-ext">
+      <div class="ev-time">19:00 – 20:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">仮：カジュアル面談</div><div class="ev-meta">4名参加</div></div>
+    </div>
+  </div>
+
+  <!-- 6/26 FRI -->
+  <div class="day-card">
+    <div class="day-hd">
+      <div><span class="day-name">FRI</span><span class="day-date">6月26日（金）</span></div>
+      <div class="day-count">4件</div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">管理課業務MTG</div><div class="ev-meta">4名参加</div></div>
+    </div>
+    <div class="ev c-mgmt">
+      <div class="ev-time">11:00 – 12:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">【MGSEC/定例MTG】事業関連</div><div class="ev-meta">Teams · 13名参加</div></div>
+    </div>
+    <div class="ev c-blk">
+      <div class="ev-time">12:30 – 13:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">フクラス</div><div class="ev-meta">セルリアン</div></div>
+    </div>
+    <div class="ev c-din">
+      <div class="ev-time">19:00 – 23:00</div><div class="ev-dot"></div>
+      <div class="ev-body"><div class="ev-title">会食 with 岡田さん/アスタリスク</div><div class="ev-meta">築地Kyビル 2F · 3名</div></div>
+    </div>
+  </div>
+
+  <!-- 6/27 SAT -->
+  <div class="day-card">
+    <div class="day-hd">
+      <div><span class="day-name wkd">SAT</span><span class="day-date">6月27日（土）</span></div>
+      <div class="day-count">0件</div>
+    </div>
+    <div class="no-ev">イベントなし — 終日空き</div>
+  </div>
+
+  <!-- 6/28 SUN -->
+  <div class="day-card">
+    <div class="day-hd">
+      <div><span class="day-name wkd">SUN</span><span class="day-date">6月28日（日）</span></div>
+      <div class="day-count">0件</div>
+    </div>
+    <div class="no-ev">イベントなし — 終日空き</div>
   </div>
 </div>
 
-<!-- ===== FREE TIME ===== -->
+<!-- ========== FREE TIME ========== -->
 <div id="free" class="section">
-  <div class="sec-title"><em>⏱</em>空き時間（09:00 – 22:00 / 30分以上）</div>
-
-  <!-- 6/21 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--amber)">SUN</span>
-        <span style="font-size:12px;color:var(--text2)">6月21日（日）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">熱海・帰路</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">12:40 – 22:00</div>
-      <div class="free-dur">9h 20m</div>
-      <div class="free-note">前: 熱海シンポジウム終了 → 帰路・午後フリー</div>
-    </div>
+  <div class="chips">
+    <div class="chip"><div class="chip-n">17</div><div class="chip-l">空きスロット<br>（30分以上）</div></div>
+    <div class="chip"><div class="chip-n">6h</div><div class="chip-l">最長連続<br>6/26（金）</div></div>
   </div>
 
   <!-- 6/22 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--gold)">MON</span>
-        <span style="font-size:12px;color:var(--text2)">6月22日（月）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">空き計 4h30m</span>
+      <div><span class="day-name">MON</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月22日（月）</span></div>
+      <span style="font-size:11px;color:var(--green);font-weight:700">3スロット</span>
     </div>
     <div class="free-ev">
       <div class="free-time">09:00 – 11:00</div>
-      <div class="free-dur">2h 00m</div>
-      <div class="free-note">前: ─ → 後: 管理課業務MTG</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 – 12:30</div>
-      <div class="free-dur">1h 00m</div>
-      <div class="free-note">前: 管理課業務MTG → 後: KELAミーティング</div>
+      <div class="free-dur">2時間</div>
+      <div class="free-note">管理課業務MTG前 — 集中作業・資料準備に最適</div>
     </div>
     <div class="free-ev">
       <div class="free-time">13:30 – 14:00</div>
-      <div class="free-dur">30m</div>
-      <div class="free-note">前: KELAミーティング → 後: Proofpoint全社展開MTG</div>
+      <div class="free-dur">30分</div>
+      <div class="free-note">KELA MTG後 → Proofpoint前</div>
     </div>
     <div class="free-ev">
-      <div class="free-time">15:00 – 16:00</div>
-      <div class="free-dur">1h 00m</div>
-      <div class="free-note">前: Team T5提案 → 後: MGSEC経営会議</div>
+      <div class="free-time">21:00 – 22:00</div>
+      <div class="free-dur">1時間</div>
+      <div class="free-note">JBS会食後 — メール返信・翌日準備</div>
     </div>
   </div>
 
   <!-- 6/23 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--gold)">TUE</span>
-        <span style="font-size:12px;color:var(--text2)">6月23日（火）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">空き計 4h15m</span>
+      <div><span class="day-name">TUE</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月23日（火）</span></div>
+      <span style="font-size:11px;color:var(--green);font-weight:700">4スロット</span>
     </div>
     <div class="free-ev">
       <div class="free-time">09:00 – 09:30</div>
-      <div class="free-dur">30m</div>
-      <div class="free-note">前: ─ → 後: Blackpanda IR-1協議</div>
+      <div class="free-dur">30分</div>
+      <div class="free-note">Blackpanda協議前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">12:45 – 15:30</div>
-      <div class="free-dur">2h 45m</div>
-      <div class="free-note">前: JPX/東京海上/ZOZOレビュー → 後: Salesforce開発MTG</div>
+      <div class="free-dur">2時間45分</div>
+      <div class="free-note">JPXレビュー会後 → Salesforce開発前 — まとまった時間</div>
     </div>
     <div class="free-ev">
       <div class="free-time">16:00 – 17:00</div>
-      <div class="free-dur">1h 00m</div>
-      <div class="free-note">前: Salesforce開発MTG → 後: [Keep]営業本部MTG</div>
+      <div class="free-dur">1時間</div>
+      <div class="free-note">Salesforce後 → [Keep]営業本部MTG前</div>
+    </div>
+    <div class="free-ev">
+      <div class="free-time">20:00 – 22:00</div>
+      <div class="free-dur">2時間</div>
+      <div class="free-note">面談（松尾さん）後</div>
     </div>
   </div>
 
   <!-- 6/24 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--gold)">WED</span>
-        <span style="font-size:12px;color:var(--text2)">6月24日（水）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">空き計 6h00m</span>
+      <div><span class="day-name">WED</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月24日（水）</span></div>
+      <span style="font-size:11px;color:var(--green);font-weight:700">4スロット</span>
     </div>
     <div class="free-ev">
       <div class="free-time">10:00 – 11:00</div>
-      <div class="free-dur">1h 00m</div>
-      <div class="free-note">前: エスコン/Zoom → 後: 管理課業務MTG</div>
+      <div class="free-dur">1時間</div>
+      <div class="free-note">午前MTG群後 → 管理課業務MTG前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">11:30 – 13:00</div>
-      <div class="free-dur">1h 30m</div>
-      <div class="free-note">前: 管理課業務MTG → 後: コンプライアンス委員会</div>
+      <div class="free-dur">1時間30分</div>
+      <div class="free-note">管理課業務MTG後 → コンプライアンス委員会前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">16:30 – 18:00</div>
-      <div class="free-dur">1h 30m</div>
-      <div class="free-note">前: GMOアワード授賞式 → 後: 防衛装備工業会</div>
+      <div class="free-dur">1時間30分</div>
+      <div class="free-note">GMOアワード授賞式後 → 防衛装備工業会前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">20:00 – 22:00</div>
-      <div class="free-dur">2h 00m</div>
-      <div class="free-note">前: 防衛装備工業会意見交換会 → 後: ─</div>
+      <div class="free-dur">2時間</div>
+      <div class="free-note">防衛装備工業会後</div>
     </div>
   </div>
 
   <!-- 6/25 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--gold)">THU</span>
-        <span style="font-size:12px;color:var(--text2)">6月25日（木）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">空き計 4h40m</span>
+      <div><span class="day-name">THU</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月25日（木）</span></div>
+      <span style="font-size:11px;color:var(--green);font-weight:700">4スロット</span>
     </div>
     <div class="free-ev">
       <div class="free-time">09:00 – 09:30</div>
-      <div class="free-dur">30m</div>
-      <div class="free-note">前: ─ → 後: 1on1 Hirano/Okoshi</div>
+      <div class="free-dur">30分</div>
+      <div class="free-note">1on1 Hirano前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">09:50 – 11:00</div>
-      <div class="free-dur">1h 10m</div>
-      <div class="free-note">前: 1on1 Hirano/Okoshi → 後: 管理課MTG/AIセミナー</div>
+      <div class="free-dur">1時間10分</div>
+      <div class="free-note">1on1後 → 管理課業務MTG前</div>
     </div>
     <div class="free-ev">
-      <div class="free-time">13:00 – 14:00</div>
-      <div class="free-dur">1h 00m</div>
-      <div class="free-note">前: フクラス → 後: ALSOK定例会</div>
+      <div class="free-time">18:20 – 19:00</div>
+      <div class="free-dur">40分</div>
+      <div class="free-note">1on1 Hao後 → カジュアル面談前</div>
     </div>
     <div class="free-ev">
       <div class="free-time">20:00 – 22:00</div>
-      <div class="free-dur">2h 00m</div>
-      <div class="free-note">前: カジュアル面談 → 後: ─</div>
+      <div class="free-dur">2時間</div>
+      <div class="free-note">カジュアル面談後</div>
     </div>
   </div>
 
   <!-- 6/26 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--gold)">FRI</span>
-        <span style="font-size:12px;color:var(--text2)">6月26日（金）</span>
-      </div>
-      <span style="font-size:11px;color:var(--text3)">空き計 8h00m</span>
+      <div><span class="day-name">FRI</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月26日（金）</span></div>
+      <span style="font-size:11px;color:var(--green);font-weight:700">2スロット</span>
     </div>
     <div class="free-ev">
       <div class="free-time">09:00 – 11:00</div>
-      <div class="free-dur">2h 00m</div>
-      <div class="free-note">前: ─ → 後: 管理課業務MTG / MGSEC定例</div>
+      <div class="free-dur">2時間</div>
+      <div class="free-note">管理課業務MTG前 — 午前集中作業</div>
     </div>
     <div class="free-ev">
       <div class="free-time">13:00 – 19:00</div>
-      <div class="free-dur">6h 00m ★</div>
-      <div class="free-note">前: フクラス → 後: 会食 with 岡田さん（週最大空き）</div>
+      <div class="free-dur">6時間</div>
+      <div class="free-note">フクラス後 → 会食（岡田さん）前 — 週最長の集中タイム</div>
     </div>
   </div>
 
   <!-- 6/27 -->
   <div class="day-card">
     <div class="free-hd">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:13px;font-weight:800;color:var(--amber)">SAT</span>
-        <span style="font-size:12px;color:var(--text2)">6月27日（土）</span>
-      </div>
-      <span style="font-size:11px;color:var(--green)">終日フリー</span>
+      <div><span class="day-name wkd">SAT</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月27日（土）</span></div>
+      <span style="font-size:11px;color:var(--amber);font-weight:700">終日</span>
     </div>
-    <div class="free-ev">
+    <div class="free-ev free-na">
       <div class="free-time">09:00 – 22:00</div>
-      <div class="free-dur">13h 00m</div>
-      <div class="free-note">予定なし — 完全フリー</div>
+      <div class="free-dur" style="background:rgba(255,179,64,0.1);color:var(--amber)">13時間</div>
+      <div class="free-note">イベントなし — 週末</div>
+    </div>
+  </div>
+
+  <!-- 6/28 -->
+  <div class="day-card">
+    <div class="free-hd">
+      <div><span class="day-name wkd">SUN</span><span class="day-date" style="margin-left:8px;font-size:12px;color:var(--text2)">6月28日（日）</span></div>
+      <span style="font-size:11px;color:var(--amber);font-weight:700">終日</span>
+    </div>
+    <div class="free-ev free-na">
+      <div class="free-time">09:00 – 22:00</div>
+      <div class="free-dur" style="background:rgba(255,179,64,0.1);color:var(--amber)">13時間</div>
+      <div class="free-note">イベントなし — 週末</div>
     </div>
   </div>
 </div>
 
-<!-- ===== MAIL ===== -->
+<!-- ========== MAIL ========== -->
 <div id="mail" class="section">
-  <div class="sec-title"><em>✉</em>要対応メール — 7件</div>
+  <p class="sec-title"><em>✉</em>要対応メール — 5件</p>
+
+  <div class="act">
+    <div class="act-hd">
+      <div class="act-subj">【見積申請04】承認依頼</div>
+      <span class="badge b-red">要承認</span>
+    </div>
+    <div class="act-from">星 雄太 (hoshi@gmo-cybersecurity.com) · 2026/06/21 11:42</div>
+    <div class="act-body"><strong>Salesforce承認URLより確認・承認が必要。</strong> 見積申請04が登録されました。承認URLにアクセスして対応してください。</div>
+  </div>
 
   <div class="act red">
     <div class="act-hd">
       <div class="act-subj">勤務確認｜6月18日の打刻修正依頼</div>
-      <span class="badge b-red">要対応</span>
+      <span class="badge b-red">打刻修正</span>
     </div>
-    <div class="act-from">noreply@donuts.ne.jp（ジョブカン）· 2026/06/20 20:51</div>
-    <div class="act-body">6月18日に<strong>出勤打刻が残ったまま</strong>になっています。マイページ（id.jobcan.jp）よりログインして修正してください。</div>
+    <div class="act-from">ジョブカン勤怠管理 · 2026/06/21 29:51</div>
+    <div class="act-body"><strong>6月18日に出勤したままになっています。</strong> マイページより修正が必要です。<br><a href="https://id.jobcan.jp/users/sign_in">ジョブカン マイページ →</a></div>
   </div>
 
   <div class="act red">
     <div class="act-hd">
       <div class="act-subj">アラート一覧｜ジョブカン勤怠管理</div>
-      <span class="badge b-red">至急</span>
+      <span class="badge b-red">至急アラート</span>
     </div>
-    <div class="act-from">noreply@donuts.ne.jp（ジョブカン）· 2026/06/19 22:58</div>
-    <div class="act-body"><strong>打刻漏れ 13件・打刻エラー 43件・未承認の休暇申請 5件</strong>が未処理です。ssl.jobcan.jp よりログインして確認・承認が必要です。</div>
+    <div class="act-from">ジョブカン勤怠管理 · 2026/06/20 23:02</div>
+    <div class="act-body"><strong>打刻漏れ 9件、打刻エラー 44件、未承認の休暇申請 5件。</strong> ログインして各項目を確認・処理してください。</div>
   </div>
 
   <div class="act">
     <div class="act-hd">
-      <div class="act-subj">【GMOイエラエ】ポケパークカントー 診断終了・速報報告書送付</div>
-      <span class="badge b-amb">要確認</span>
+      <div class="act-subj">加藤 若菜さんが休暇申請しました｜ジョブカン</div>
+      <span class="badge b-amb">休暇承認</span>
     </div>
-    <div class="act-from">ayane.suzuki@gmo-cybersecurity.com · 2026/06/19 20:09</div>
-    <div class="act-body">ticket-en.pokepark-kanto の WebAPI診断・WebPT作業が完了。<strong>リスクレベル高の脆弱性を検出</strong>しており速報報告書をBoxに格納済み。cc: kuramoto / inoue@pokemon.co.jp 他。</div>
+    <div class="act-from">ジョブカン勤怠管理 · 2026/06/21 30:52</div>
+    <div class="act-body"><strong>加藤若菜さんが6月9日の休暇申請をしました。</strong> 確認・承認が必要です。</div>
   </div>
 
   <div class="act blue">
     <div class="act-hd">
-      <div class="act-subj">閲覧可能な申請が新規登録：NECとの情報交換（交際費・事前申請）</div>
-      <span class="badge b-blu">承認待ち</span>
+      <div class="act-subj">承諾: 公共/AIシス開 — 本日16:30〜17:00</div>
+      <span class="badge b-blu">本日開催</span>
     </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp（ジョブカン）· 2026/06/20 01:45</div>
-    <div class="act-body">申請者: <strong>伊藤 公祐</strong> ／ 件名: NECとの情報交換 ／ 申請の種類: 交際費の支出/社外含む（事前申請）。承認フローを確認してください。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">閲覧可能な申請が新規登録：ベイシス株式会社 発注書（BLAS_Web PT調査型_2026）</div>
-      <span class="badge b-blu">承認待ち</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp（ジョブカン）· 2026/06/19 22:56</div>
-    <div class="act-body">申請者: <strong>鈴木 光</strong> ／ ベイシス株式会社_発注書(BLAS_Web PT調査型_2026)_20260529。ジョブカン経費精算/ワークフローで確認が必要です。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">※送信専用※【GMOイエラエ】GMO外貨 パスキー認証機能 WEB診断 確認書</div>
-      <span class="badge b-blu">要確認</span>
-    </div>
-    <div class="act-from">masayuki.sakakihara@gmo-cybersecurity.com · 2026/06/20 03:11</div>
-    <div class="act-body">GMOフィナンシャルHD宛に<strong>GMO外貨_パスキー認証機能_WEB診断_確認書</strong>を送付済み。不明点があれば問い合わせを。cc: sales@gmo-cybersecurity.com</div>
-  </div>
-
-  <div class="act purple">
-    <div class="act-hd">
-      <div class="act-subj">【新卒紹介_求職者マイページ】脆弱性診断のご依頼（マイナビ）</div>
-      <span class="badge b-pur">要確認</span>
-    </div>
-    <div class="act-from">yamamoto.yuri.gd@mynavi.jp（株式会社マイナビ）· 2026/05/18 ～ 継続中</div>
-    <div class="act-body">新卒紹介 関連<strong>3システム</strong>（求職者マイページ・web入稿システム・案件管理システム）の脆弱性診断依頼スレッド。質問票の回答確認が継続中（Important ラベル）。</div>
+    <div class="act-from">堀 竜夫 (tatsuo.hori@gmo-cybersecurity.com) · 2026/06/21 29:25</div>
+    <div class="act-body"><strong>6月22日（本日）16:30〜17:00「公共/AIシス開」MTGへの招待を堀さんが承諾。</strong> 9名参加予定。Google Meet参加リンク確認を。</div>
   </div>
 </div>
 
-<!-- ===== SLACK ===== -->
+<!-- ========== SLACK ========== -->
 <div id="slack" class="section">
-  <div class="sec-title"><em>#</em>要返信 Slack — 5件</div>
+  <p class="sec-title"><em>💬</em>Slack未返信 — 4件</p>
 
   <div class="act red">
     <div class="act-hd">
-      <div class="act-subj">エポスカード NDA — 秘密保持義務期間 2年→5年 受入可否確認</div>
-      <span class="badge b-red">承認依頼</span>
+      <div class="act-subj">TeamT5 GDM｜出資/スキーム叩き台作成【本日期限】</div>
+      <span class="badge b-red">本日期限</span>
     </div>
-    <div class="act-from">宮本 由紀 · #sales_管理 · 2026/06/16 11:29</div>
-    <div class="act-body">第12条（存続条項）につき先方修正案で<strong>秘密保持義務が2年→5年</strong>に延長。「お受け入れして問題ないでしょうか？」と確認依頼。商談: セキュリティコンサルティング（Salesforce）</div>
+    <div class="act-from">野沢隆至・伊藤世那 (GMOIG) · 2026/06/19 18:58 · Group DM</div>
+    <div class="act-body"><strong>TODO担当：大越専務、期限：6/22（本日）廣惠本部長定例まで。</strong> ①出資/スキームの叩き台作成 ②イエラエと廣惠本部長で議論 ③投資戦略室にて出資/スキーム確認（期限6/23 19:00）</div>
   </div>
 
   <div class="act">
     <div class="act-hd">
-      <div class="act-subj">PDC様 セキュリオ（LRM社）利用規約 受入可否確認</div>
-      <span class="badge b-amb">承認依頼</span>
+      <div class="act-subj">#proj_gmo顔パス｜7/8(水) キックオフ/懇親会 OK/NG</div>
+      <span class="badge b-amb">リアクション待ち</span>
     </div>
-    <div class="act-from">福士 早織 · #sales_管理 · 2026/06/16 17:46</div>
-    <div class="act-body">ピーディーシー様のセキュリティアンケート回答のため<strong>セキュリオ利用規約への同意</strong>が必要。一部改定あり。前回受入れ済みにつき「修正否で進めて良いかのご判断をお願いします」。</div>
+    <div class="act-from">萩坂 拓也 (U0AN7FFH3U3) · 2026/06/18 16:09 · #proj_gmo顔パス</div>
+    <div class="act-body"><strong>7/8（水）18:00 キックオフ / 19:00 懇親会の日程でOK or NG のリアクションをください。</strong> 大越さん・戸上さん・堀さん・国本さん・名古屋さんのスケジュールを確認し7/8が有力とのこと。</div>
   </div>
 
   <div class="act">
     <div class="act-hd">
-      <div class="act-subj">契約条項 17条2項・22条・23条 修正案 最終確認</div>
-      <span class="badge b-amb">要確認</span>
+      <div class="act-subj">#sales_管理｜お受入れ判断 4・5・6の削除理由確認依頼</div>
+      <span class="badge b-amb">確認依頼</span>
     </div>
-    <div class="act-from">宮本 由紀 · #sales_管理 · 2026/06/16 16:00</div>
-    <div class="act-body">17条2項（知財侵害責任）・22条（損害賠償）・23条（不可抗力）をイエラエ修正案に戻した。<strong>お客様への再交渉前に最終確認</strong>をお願いしたいとのこと。</div>
-  </div>
-
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">読広クリエイティブスタジオ NDA 修正案 確認（第8条 損害賠償・双方向化）</div>
-      <span class="badge b-amb">要確認</span>
-    </div>
-    <div class="act-from">宮本 由紀 · #sales_管理 · 2026/06/18 11:23</div>
-    <div class="act-body">第1条・第4条・<strong>第8条（損害賠償）を双方向に修正</strong>した覚書案を法務が作成。問題なければ先方へ交渉する旨、確認依頼。（鈴木正泰は承諾済み）</div>
+    <div class="act-from">福士 早織 (U05E8S4GXMF) · 2026/06/19 17:55 · #sales_管理</div>
+    <div class="act-body"><strong>大越さんにお受入れ判断をお願いした内の4・5・6について、削除した理由を先方にご確認いただけますか。</strong> その後法務に報告し、再度修正案を作成する流れとのこと。</div>
   </div>
 
   <div class="act blue">
     <div class="act-hd">
-      <div class="act-subj">社長就任 お祝いの会 — 日程調整依頼（中條 勝夫 / GMOグローバルサイン）</div>
-      <span class="badge b-blu">返信待ち</span>
+      <div class="act-subj">#pjt_採用_営業｜大越さんの面接に進めてよいか確認</div>
+      <span class="badge b-blu">採用面接</span>
     </div>
-    <div class="act-from">中條 勝夫 · DM · 2026/06/15 16:39</div>
-    <div class="act-body">社長就任のお祝いの会を開催したいとのこと。<strong>6/30・7/7・7/8・7/13</strong> が候補として伝え済み。中條さんの都合で6/30か7/13に絞る予定。最終日程確認が必要。</div>
+    <div class="act-from">羽尾 和弘 (U07NR4G4GPJ) · 2026/06/18 17:36 · #pjt_採用_営業</div>
+    <div class="act-body"><strong>タイミング的に厳しいかもしれませんが、大越さんの面接に進めていただいてもよろしいでしょうか。</strong> 良い人であれば採用調整という流れ。後ほどHerpに申し送り事項を反映予定。</div>
   </div>
 </div>
 
 <script>
-var TODAY='20260621';
+var TODAY='20260622';
 function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function injectDoneButtons(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var footer=document.createElement('div');footer.className='act-footer';var btn=document.createElement('button');btn.className='done-btn';btn.textContent='✓ 完了';btn.addEventListener('click',function(){toggleDone(card,i,sec,btn);});footer.appendChild(btn);card.appendChild(footer);});});}
 function toggleDone(card,i,sec,btn){var key='done_'+TODAY+'_'+sec+'_'+i;if(card.classList.contains('done')){card.classList.remove('done');btn.textContent='✓ 完了';btn.classList.remove('is-done');try{localStorage.removeItem(key);}catch(e){}}else{card.classList.add('done');btn.textContent='↩ 戻す';btn.classList.add('is-done');try{localStorage.setItem(key,'1');}catch(e){}}updateBadges();}
