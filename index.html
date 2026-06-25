@@ -2,832 +2,470 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>大越大造 スケジュール | 2026-06-23</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>大越スケジュール 2026/06/25–07/01</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070B12;--card:#0E1520;--card2:#131D2B;--border:rgba(180,145,55,0.18);--gold:#C9A840;--gold2:#F0CC6A;--text:#DDE2EC;--text2:#7E8FA6;--text3:#445060;--blue:#4A9EFF;--green:#3DD68C;--red:#FF5F5F;--amber:#FFB340;--purple:#9B8FFF;--teal:#3ECFCF;--orange:#FF8C50}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Segoe UI',sans-serif;line-height:1.5;min-height:100vh}
-.header{background:linear-gradient(135deg,#080F1E 0%,#0F1C30 60%,#0A1525 100%);border-bottom:1px solid var(--border);padding:16px 20px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5)}
-.header-top{display:flex;align-items:flex-start;justify-content:space-between;max-width:900px;margin:0 auto}
-.logo{font-size:20px;font-weight:800;letter-spacing:.5px;line-height:1.2}
-.logo-ok{color:var(--text)}.logo-sch{color:var(--gold2)}
-.logo-jp{color:var(--text2);font-size:13px;font-weight:400;margin-top:2px}
-.header-meta{text-align:right;font-size:11px;color:var(--text3);line-height:1.8}
-.header-meta b{color:var(--text2);font-weight:600}
-.nav{max-width:900px;margin:14px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:0}
-.nav::-webkit-scrollbar{display:none}
-.nav-tab{padding:9px 18px;border-radius:10px 10px 0 0;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s;background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid transparent;border-bottom:none;letter-spacing:.3px}
-.nav-tab.active{background:var(--card2);color:var(--gold2);border-color:var(--border);border-bottom:1px solid var(--card2)}
-.nav-tab:hover:not(.active){background:rgba(255,255,255,0.07);color:var(--text2)}
-.nav-badge{display:inline-block;background:var(--red);color:#fff;border-radius:8px;padding:0 5px;font-size:10px;margin-left:4px;vertical-align:1px}
-.nav-badge.amber{background:var(--amber);color:#070B12}
-.section{display:none;max-width:900px;margin:0 auto;padding:20px 14px 40px}
-.section.active{display:block}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px}
-.chip-n{font-size:22px;font-weight:800;color:var(--gold);line-height:1}
-.chip-l{font-size:11px;color:var(--text2);line-height:1.4}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text3)}
-.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
-.day-hd{padding:12px 18px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.day-name{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px;text-transform:uppercase}
-.day-name.wkd{color:var(--amber)}
-.day-date{font-size:12px;color:var(--text2);margin-left:8px}
-.day-count{font-size:11px;color:var(--text3);background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:8px}
-.ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,0.04);gap:14px;align-items:flex-start;transition:background .15s}
-.ev:last-child{border-bottom:none}
-.ev:hover{background:rgba(255,255,255,0.02)}
-.ev-time{width:110px;flex-shrink:0;font-size:11.5px;color:var(--text2);font-variant-numeric:tabular-nums;padding-top:2px;line-height:1.3}
-.ev-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.ev-body{flex:1;min-width:0}
-.ev-title{font-size:13.5px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ev-meta{font-size:11.5px;color:var(--text3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.c-mgmt .ev-dot{background:var(--gold)}.c-mgmt .ev-title{color:#E8D090}
-.c-sales .ev-dot{background:var(--blue)}
-.c-ext .ev-dot{background:var(--green)}
-.c-1on1 .ev-dot{background:var(--teal)}
-.c-din .ev-dot{background:var(--purple)}.c-din .ev-title{color:#C5BCFF}
-.c-trv .ev-dot{background:var(--amber)}.c-trv .ev-title{color:#FFCF70}
-.c-sym .ev-dot{background:var(--orange)}.c-sym .ev-title{color:#FFAA70}
-.c-blk .ev-dot{background:var(--text3)}.c-blk .ev-title{color:var(--text3)}
-.free-hd{padding:12px 18px;background:rgba(61,214,140,0.06);border-bottom:1px solid rgba(61,214,140,0.12);display:flex;align-items:center;justify-content:space-between}
-.free-ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(61,214,140,0.08);gap:14px;align-items:center;background:rgba(61,214,140,0.02)}
-.free-ev:last-child{border-bottom:none}
-.free-time{width:130px;flex-shrink:0;font-size:11.5px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700}
-.free-dur{background:rgba(61,214,140,0.12);color:var(--green);font-size:11px;font-weight:800;padding:2px 9px;border-radius:8px;white-space:nowrap;flex-shrink:0}
-.free-note{font-size:12.5px;color:var(--text2);flex:1}
-.free-na .free-dur{background:rgba(255,255,255,0.05);color:var(--text3)}
-.free-na .free-note{color:var(--text3)}
-.act{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:12px;margin-bottom:12px;padding:15px 18px}
-.act.red{border-left-color:var(--red)}.act.blue{border-left-color:var(--blue)}.act.purple{border-left-color:var(--purple)}
-.act-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
-.act-subj{font-size:14px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
-.badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;letter-spacing:.3px}
-.b-red{background:rgba(255,95,95,.14);color:var(--red);border:1px solid rgba(255,95,95,.25)}
-.b-amb{background:rgba(255,179,64,.14);color:var(--amber);border:1px solid rgba(255,179,64,.25)}
-.b-blu{background:rgba(74,158,255,.14);color:var(--blue);border:1px solid rgba(74,158,255,.25)}
-.b-pur{background:rgba(155,143,255,.14);color:var(--purple);border:1px solid rgba(155,143,255,.25)}
-.act-from{font-size:11.5px;color:var(--text3);margin-bottom:5px}
-.act-body{font-size:13px;color:var(--text2);line-height:1.6}
-.act-body strong{color:var(--text);font-weight:600}
-.act-body a{color:var(--blue);text-decoration:none;font-size:12px}
-.act.done{opacity:0.4;border-left-color:var(--text3)!important}
-.act.done .act-subj{text-decoration:line-through;color:var(--text3)}
-.act-footer{display:flex;justify-content:flex-end;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05)}
-.done-btn{font-size:11px;font-weight:700;padding:5px 16px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text3);transition:all .2s;letter-spacing:.4px;user-select:none;font-family:inherit}
-.done-btn:hover:not(.is-done){background:rgba(61,214,140,0.1);border-color:rgba(61,214,140,0.35);color:var(--green)}
-.done-btn.is-done{background:rgba(61,214,140,0.08);border-color:rgba(61,214,140,0.25);color:var(--green)}
-.done-btn.is-done:hover{background:rgba(255,95,95,0.08);border-color:rgba(255,95,95,0.25);color:var(--red)}
-.sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.sec-title em{color:var(--gold);font-style:normal;font-size:15px;vertical-align:-1px;margin-right:6px}
-.empty-state{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px}
-.empty-state .empty-icon{font-size:36px;margin-bottom:12px}
-.conflict-badge{display:inline-block;font-size:9px;font-weight:800;background:rgba(255,95,95,0.15);color:var(--red);border:1px solid rgba(255,95,95,0.3);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1px;letter-spacing:.2px}
-@media(max-width:600px){.ev-time,.free-time{width:88px}.header{padding:14px 14px 0}.nav-tab{padding:8px 13px;font-size:11px}.ev,.free-ev{padding:10px 12px;gap:10px}.act,.day-hd{padding:13px 14px}.section{padding:14px 10px 40px}}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:rgba(180,145,55,.3);border-radius:2px}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Noto Sans JP', sans-serif; background: #0D0D1A; color: #E0E0FF; min-height: 100vh; }
+.header { background: linear-gradient(135deg,#1a1a3e,#2d1b69); padding: 20px 28px; border-bottom: 2px solid #6C63FF; display:flex; justify-content:space-between; align-items:center; }
+.header h1 { font-size: 1.4em; font-weight: 700; color: #C8B8FF; }
+.header .meta { font-size: 0.82em; color: #9988CC; text-align:right; }
+.section { padding: 20px 24px; }
+.section-title { font-size: 1.05em; font-weight: 700; color: #A09FFF; margin-bottom: 12px; border-left: 4px solid #6C63FF; padding-left: 10px; }
+/* Today's schedule */
+.today-grid { display: flex; flex-direction: column; gap: 6px; }
+.evt { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #181830; border-radius: 6px; flex-wrap: wrap; }
+.etime { font-size: 0.78em; color: #8888BB; min-width: 100px; font-family: monospace; }
+.etitle { font-size: 0.88em; font-weight: 600; flex: 1; }
+.att { font-size: 0.72em; color: #9999CC; }
+.loc { font-size: 0.72em; color: #88BBAA; }
+.ecat { font-size: 0.65em; padding: 2px 6px; border-radius: 10px; color: #fff; font-weight: 700; margin-left: auto; }
+/* Week view */
+.week-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; overflow-x: auto; }
+.day-col { border-radius: 8px; padding: 10px 8px; display: flex; flex-direction: column; gap: 5px; }
+.day-hdr { font-size: 0.82em; font-weight: 700; color: #C8B8FF; margin-bottom: 4px; }
+.day-count { font-size: 0.68em; color: #7777AA; margin-bottom: 4px; }
+.day-col .evt { padding: 5px 7px; }
+.day-col .etime { font-size: 0.68em; min-width: 80px; }
+.day-col .etitle { font-size: 0.75em; }
+.no-ev { font-size: 0.72em; color: #555577; padding: 6px 0; }
+/* Actionable */
+.act-section { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:900px) { .act-section { grid-template-columns: 1fr; } .week-grid { grid-template-columns: repeat(4,1fr); } }
+.act-panel { background: #181830; border-radius: 8px; padding: 14px; }
+.act-panel-title { font-size: 0.85em; font-weight: 700; color: #AAAAEE; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #2A2A50; }
+.act-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid #1E1E40; }
+.act-item:last-child { border-bottom: none; }
+.act-icon { font-size: 1em; min-width: 20px; }
+.act-label { font-size: 0.72em; background: #2A2A60; color: #9999EE; padding: 1px 6px; border-radius: 10px; white-space: nowrap; }
+.act-from { font-size: 0.78em; font-weight: 700; color: #BBBBFF; min-width: 70px; }
+.act-body { font-size: 0.78em; color: #CCCCEE; line-height: 1.4; }
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.leg-item { display: flex; align-items: center; gap: 4px; font-size: 0.72em; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+.divider { height: 1px; background: #222240; margin: 0 24px; }
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div class="header-top">
-    <div>
-      <div class="logo"><span class="logo-ok">大越</span><span class="logo-sch">SCHEDULE</span></div>
-      <div class="logo-jp">2026年6月23日（火）— 6月29日（月）</div>
-    </div>
-    <div class="header-meta">
-      <div><b>IERAE SECURITY / GMO CSI</b></div>
-      <div>Updated: 2026/06/23</div>
-    </div>
+  <div>
+    <div class="header h1">📅 大越スケジュール</div>
+    <div style="font-size:0.85em;color:#B8A8EE;margin-top:4px;">2026年6月25日（木）— 7月1日（水）</div>
   </div>
-  <nav class="nav">
-    <div class="nav-tab active" onclick="show('schedule',this)">スケジュール</div>
-    <div class="nav-tab" onclick="show('free',this)">空き時間</div>
-    <div class="nav-tab" onclick="show('mail',this)">メール<span class="nav-badge">8</span></div>
-    <div class="nav-tab" onclick="show('slack',this)">Slack<span class="nav-badge amber">0</span></div>
-  </nav>
+  <div class="meta">
+    <div>Updated: 2026/06/25</div>
+    <div style="margin-top:3px;">イベント 44件 / メール 4件 / Slack 5件</div>
+  </div>
 </div>
 
-<!-- ===== SCHEDULE ===== -->
-<div id="schedule" class="section active">
-  <div class="chips">
-    <div class="chip"><div class="chip-n">43</div><div class="chip-l">今週の<br>イベント</div></div>
-    <div class="chip"><div class="chip-n">8</div><div class="chip-l">要対応<br>メール</div></div>
-    <div class="chip"><div class="chip-n">0</div><div class="chip-l">Slack<br>メンション</div></div>
-    <div class="chip"><div class="chip-n">2</div><div class="chip-l">今週の<br>会食</div></div>
-  </div>
-  <div class="legend">
-    <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>経営・幹部</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>営業</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>社外</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--teal)"></div>1on1</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--purple)"></div>会食</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--orange)"></div>シンポ</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--text3)"></div>ブロック</div>
-  </div>
-
-  <!-- 6/23 火 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">TUE</span><span class="day-date">6月23日（火）</span></div>
-      <div class="day-count">9 件</div>
+<div class="section">
+  <div class="section-title">🔵 TODAY — 6月25日（木）のスケジュール</div>
+  <div class="today-grid">
+    <div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>08:05–08:35</span>
+      <span class='etitle'>Office</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="ev c-ext">
-      <div class="ev-time">09:30 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Blackpanda IR-1 取り扱い協議</div>
-        <div class="ev-meta">参加者 5名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>09:30–09:50</span>
+      <span class='etitle'>1on1 Hirano/Okoshi</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
     </div>
-    <div class="ev c-blk">
-      <div class="ev-time">10:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Reserved</div>
-        <div class="ev-meta">ブロック</div>
-      </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>10:00–10:15</span>
+      <span class='etitle'>Summit提出</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">12:00 – 12:45</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【大規模】JPX / 東京海上 / ZOZO レビュー会（3件）</div>
-        <div class="ev-meta">参加者 15名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>11:00–12:00</span>
+      <span class='etitle'>「ネットのセキュリティもGMO」</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">仲間づくりList</div>
-        <div class="ev-meta"></div>
-      </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>【視聴必須】GMO AIセミナー第6回</span> <span class='att'>👥75</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">15:30 – 16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">MTG - Salesforce開発</div>
-        <div class="ev-meta">Zoom | 参加者 3名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>12:00–12:30</span>
+      <span class='etitle'>【木曜定例】GMO顔パスキープ</span> <span class='att'>👥5</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
     </div>
-    <div class="ev c-sales">
-      <div class="ev-time">17:00 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">[Keep] MTG - 営業本部</div>
-        <div class="ev-meta">Zoom | 参加者 57名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>12:30–13:00</span>
+      <span class='etitle'>フクラス</span> <span class='loc'>📍セルリアン</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="ev c-sym">
-      <div class="ev-time">18:00 – 19:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">IERAE FOCUS #13</div>
-        <div class="ev-meta">参加者 163名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>13:00–14:00</span>
+      <span class='etitle'>廣惠本部長の部屋</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">19:00 – 20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">FIX 面談：松尾 雄一郎さん</div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>14:00–15:00</span>
+      <span class='etitle'>ALSOK定例会（6月度）</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
     </div>
-  </div>
-
-  <!-- 6/24 水 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">WED</span><span class="day-date">6月24日（水）</span></div>
-      <div class="day-count">8 件</div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>14:00–15:00</span>
+      <span class='etitle'>Reserved</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="ev c-sales">
-      <div class="ev-time">09:00 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">※最終調整【mtg】エスコン＆ADPass<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">Zoom | 参加者 2名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>15:00–16:00</span>
+      <span class='etitle'>ネットde診断 チーム合同定例</span> <span class='att'>👥21</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">09:00 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">G代表政策室 Zoom ミーティング<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">Zoom | 参加者 3名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>15:00–15:30</span>
+      <span class='etitle'>Internal：Proofpoint/山下副社長MTG後整理</span> <span class='att'>👥5</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="ev c-sales">
-      <div class="ev-time">10:00 – 10:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">公共営業定例MTG</div>
-        <div class="ev-meta">参加者 2名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>16:00–17:00</span>
+      <span class='etitle'>【確定】CyberDD足立様 来社＠セルリアンD5</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>17:20–17:40</span>
+      <span class='etitle'>1on1 with 中山</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">13:00 – 13:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">コンプライアンス委員会</div>
-        <div class="ev-meta">セルリアンタワー 7F-C会議室 | 参加者 11名</div>
-      </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>17:40–18:00</span>
+      <span class='etitle'>1on1 with 萩坂</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">イエラエ全社会</div>
-        <div class="ev-meta">参加者 1名</div>
-      </div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">15:00 – 16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【視聴必須】GMOアワード2026 授賞式</div>
-        <div class="ev-meta">参加者 75名</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">18:00 – 20:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">日本防衛装備工業会電子部会 意見交換会</div>
-        <div class="ev-meta">参加者 3名</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/25 木 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">THU</span><span class="day-date">6月25日（木）</span></div>
-      <div class="day-count">13 件</div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">09:30 – 09:50</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1 on 1 Hirano / Okoshi</div>
-        <div class="ev-meta">参加者 3名</div>
-      </div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【視聴必須】2026年第6回 GMO AIセミナー<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">参加者 75名</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">11:00 – 12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">「ネットのセキュリティもGMO」<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">Zoom</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">12:00 – 12:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【木曜定例】GMO顔パスキープ</div>
-        <div class="ev-meta">参加者 5名</div>
-      </div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">12:30 – 13:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">フクラス</div>
-        <div class="ev-meta">セルリアン</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">ALSOK定例会 ※6月度<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">参加者 3名</div>
-      </div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">14:00 – 15:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Reserved<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">ブロック</div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">15:00 – 16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">ネットde診断 チーム合同定例</div>
-        <div class="ev-meta">参加者 21名</div>
-      </div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">16:00 – 17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【確定】CyberDD 足立様 来社＠セルリアンD5</div>
-        <div class="ev-meta">参加者 2名</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:20 – 17:40</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1on1 with 中山</div>
-        <div class="ev-meta">参加者 2名</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:40 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1on1 with 萩坂</div>
-        <div class="ev-meta">参加者 2名</div>
-      </div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">18:00 – 18:20</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">1 on 1 Hao / Okoshi</div>
-        <div class="ev-meta">参加者 2名</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/26 金 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">FRI</span><span class="day-date">6月26日（金）</span></div>
-      <div class="day-count">5 件</div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 12:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【MGSEC/定例MTG】事業関連<span class="conflict-badge">⚠ 競合</span></div>
-        <div class="ev-meta">Microsoft Teams | 参加者 13名</div>
-      </div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">12:30 – 13:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">フクラス</div>
-        <div class="ev-meta">セルリアン</div>
-      </div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">15:00 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Reserved</div>
-        <div class="ev-meta">ブロック</div>
-      </div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">19:00 – 23:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">会食 with 岡田さん／アスタリスク</div>
-        <div class="ev-meta">築地Kyビル 2F | 参加者 3名</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/27 土 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name wkd">SAT</span><span class="day-date">6月27日（土）</span></div>
-      <div class="day-count">0 件</div>
-    </div>
-    <div class="ev c-blk" style="opacity:0.45">
-      <div class="ev-time">終日</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">イベントなし</div>
-        <div class="ev-meta">休日</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/28 日 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name wkd">SUN</span><span class="day-date">6月28日（日）</span></div>
-      <div class="day-count">0 件</div>
-    </div>
-    <div class="ev c-blk" style="opacity:0.45">
-      <div class="ev-time">終日</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">イベントなし</div>
-        <div class="ev-meta">休日</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6/29 月 -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">MON</span><span class="day-date">6月29日（月）</span></div>
-      <div class="day-count">7 件</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">08:00 – 16:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Reserved</div>
-        <div class="ev-meta">終日ブロック</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">管理課業務MTG</div>
-        <div class="ev-meta">参加者 4名</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">16:00 – 16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">システム開発・通期売上見通しについて</div>
-        <div class="ev-meta">セルリアンタワー 7F-B会議室 | 参加者 8名</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">16:30 – 17:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">公共 / AIシス開</div>
-        <div class="ev-meta">参加者 9名</div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">17:00 – 18:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">廣惠本部長 GMO‐6部門定例キープ</div>
-        <div class="ev-meta"></div>
-      </div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">18:00 – 18:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">[Keep] 営業本部 Mgr</div>
-        <div class="ev-meta">Zoom | 参加者 11名</div>
-      </div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:30 – 22:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">岡田 会食</div>
-        <div class="ev-meta">東京都中央区銀座6-12-2 東京銀座ビル1F</div>
-      </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>18:00–18:20</span>
+      <span class='etitle'>1on1 Hao/Okoshi</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
     </div>
   </div>
 </div>
 
-<!-- ===== FREE TIME ===== -->
-<div id="free" class="section">
-  <div class="sec-title"><em>◎</em>空き時間（09:00 – 22:00 / 30分以上）</div>
+<div class="divider"></div>
 
-  <!-- 6/23 火 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name">TUE</span><span class="day-date" style="margin-left:8px">6月23日（火）</span></div>
-      <div class="day-count" style="color:var(--green)">6スロット</div>
+<div class="section">
+  <div class="section-title">📆 今週のスケジュール（6/25 木 — 7/1 水）</div>
+  <div class="week-grid">
+    <div class='day-col' style='background:#1E1E2E;border:2px solid #6C63FF;'>
+      <div class='day-hdr'>6/25 木 🔵TODAY</div>
+      <div class='day-count'>17件</div>
+      <div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>08:05–08:35</span>
+      <span class='etitle'>Office</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 09:30</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">→ Blackpanda IR-1前</div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>09:30–09:50</span>
+      <span class='etitle'>1on1 Hirano/Okoshi</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 – 12:00</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">Reserved後 → JPXレビュー前</div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>10:00–10:15</span>
+      <span class='etitle'>Summit提出</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">12:45 – 14:00</div>
-      <div class="free-dur">75分</div>
-      <div class="free-note">JPXレビュー後 → 仲間づくりList前</div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">15:00 – 15:30</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">仲間づくり後 → Salesforce開発前</div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>11:00–12:00</span>
+      <span class='etitle'>「ネットのセキュリティもGMO」</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">16:00 – 17:00</div>
-      <div class="free-dur">60分</div>
-      <div class="free-note">Salesforce後 → 営業本部前</div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>【視聴必須】GMO AIセミナー第6回</span> <span class='att'>👥75</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
     </div>
-    <div class="free-ev">
-      <div class="free-time">20:00 – 22:00</div>
-      <div class="free-dur">120分</div>
-      <div class="free-note">面談終了後</div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>12:00–12:30</span>
+      <span class='etitle'>【木曜定例】GMO顔パスキープ</span> <span class='att'>👥5</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>12:30–13:00</span>
+      <span class='etitle'>フクラス</span> <span class='loc'>📍セルリアン</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>13:00–14:00</span>
+      <span class='etitle'>廣惠本部長の部屋</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>14:00–15:00</span>
+      <span class='etitle'>ALSOK定例会（6月度）</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
+    </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>14:00–15:00</span>
+      <span class='etitle'>Reserved</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>15:00–16:00</span>
+      <span class='etitle'>ネットde診断 チーム合同定例</span> <span class='att'>👥21</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>15:00–15:30</span>
+      <span class='etitle'>Internal：Proofpoint/山下副社長MTG後整理</span> <span class='att'>👥5</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>16:00–17:00</span>
+      <span class='etitle'>【確定】CyberDD足立様 来社＠セルリアンD5</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
+    </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>17:20–17:40</span>
+      <span class='etitle'>1on1 with 中山</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
+    </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>17:40–18:00</span>
+      <span class='etitle'>1on1 with 萩坂</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
+    </div>
+<div class='evt' style='border-left:4px solid #FDCA40'>
+      <span class='etime'>18:00–18:20</span>
+      <span class='etitle'>1on1 Hao/Okoshi</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#FDCA40'>1on1</span>
+    </div>
+    </div><div class='day-col' style='background:#1A1A2E;'>
+      <div class='day-hdr'>6/26 金</div>
+      <div class='day-count'>7件</div>
+      <div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>07:05–07:35</span>
+      <span class='etitle'>Office</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>08:00–11:00</span>
+      <span class='etitle'>Reserved</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–12:00</span>
+      <span class='etitle'>【MGSEC定例MTG】事業関連</span> <span class='att'>👥13</span> <span class='loc'>📍Teams</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>12:30–13:00</span>
+      <span class='etitle'>フクラス</span> <span class='loc'>📍セルリアン</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>15:00–18:00</span>
+      <span class='etitle'>Reserved</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #FF6B6B'>
+      <span class='etime'>19:00–23:00</span>
+      <span class='etitle'>会食 with 岡田さん/アスタリスク</span> <span class='att'>👥3</span> <span class='loc'>📍築地Kyビル 2F</span>
+      <span class='ecat' style='background:#FF6B6B'>会食</span>
+    </div>
+    </div><div class='day-col' style='background:#141420;'>
+      <div class='day-hdr'>6/27 土</div>
+      <div class='day-count'>0件</div>
+      <p class='no-ev'>予定なし</p>
+    </div><div class='day-col' style='background:#141420;'>
+      <div class='day-hdr'>6/28 日</div>
+      <div class='day-count'>0件</div>
+      <p class='no-ev'>予定なし</p>
+    </div><div class='day-col' style='background:#1A1A2E;'>
+      <div class='day-hdr'>6/29 月</div>
+      <div class='day-count'>9件</div>
+      <div class='evt' style='border-left:4px solid #CCCCCC'>
+      <span class='etime'>08:00–16:00</span>
+      <span class='etitle'>Reserved</span>
+      <span class='ecat' style='background:#CCCCCC'>ブロック</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>14:00–14:45</span>
+      <span class='etitle'>CS予実キープ</span> <span class='att'>👥26</span> <span class='loc'>📍CT-7-C会議室</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>15:00–15:45</span>
+      <span class='etitle'>KEEP: ストック KGI/KPI MTG</span> <span class='att'>👥21</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>16:00–16:30</span>
+      <span class='etitle'>システム開発・通期売上見通しについて</span> <span class='att'>👥8</span> <span class='loc'>📍CT-7-B会議室</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>16:30–17:00</span>
+      <span class='etitle'>公共/AIシス開</span> <span class='att'>👥9</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>17:00–18:00</span>
+      <span class='etitle'>廣惠本部長 GMO-6部門定例キープ</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>18:00–18:30</span>
+      <span class='etitle'>[Keep]営業本部 Mgr</span> <span class='att'>👥11</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #FF6B6B'>
+      <span class='etime'>18:30–22:30</span>
+      <span class='etitle'>岡田 会食</span> <span class='loc'>📍東京銀座ビル1F</span>
+      <span class='ecat' style='background:#FF6B6B'>会食</span>
+    </div>
+    </div><div class='day-col' style='background:#1A1A2E;'>
+      <div class='day-hdr'>6/30 火</div>
+      <div class='day-count'>6件</div>
+      <div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>10:00–10:30</span>
+      <span class='etitle'>ネットde診断・通期売上見通しについて</span> <span class='att'>👥8</span> <span class='loc'>📍CT-7-B会議室</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>12:00–12:45</span>
+      <span class='etitle'>【枠確保】大規模提案レビュー会</span> <span class='att'>👥13</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>17:00–18:00</span>
+      <span class='etitle'>[Keep]MTG - 営業本部</span> <span class='att'>👥51</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>18:00–19:00</span>
+      <span class='etitle'>FH高島会長・服部さん・IG冨山さん ブレスト</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>18:00–19:00</span>
+      <span class='etitle'>【mtg】顔パス1カウント＠フクラス10F</span> <span class='att'>👥3</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+    </div><div class='day-col' style='background:#1A1A2E;'>
+      <div class='day-hdr'>7/1 水</div>
+      <div class='day-count'>5件</div>
+      <div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>09:30–10:00</span>
+      <span class='etitle'>公共営業定例MTG</span> <span class='att'>👥2</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #6C63FF'>
+      <span class='etime'>11:00–11:30</span>
+      <span class='etitle'>管理課業務MTG</span> <span class='att'>👥4</span>
+      <span class='ecat' style='background:#6C63FF'>経営</span>
+    </div>
+<div class='evt' style='border-left:4px solid #00B8A9'>
+      <span class='etime'>12:30–13:00</span>
+      <span class='etitle'>「イエラエ/SOCキープ」</span> <span class='att'>👥10</span> <span class='loc'>📍Zoom</span>
+      <span class='ecat' style='background:#00B8A9'>営業</span>
+    </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>14:00–15:00</span>
+      <span class='etitle'>【確定】ALSOK様×GMOアリーナ</span> <span class='att'>👥3</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
+    </div>
+<div class='evt' style='border-left:4px solid #F6416C'>
+      <span class='etime'>17:30–18:30</span>
+      <span class='etitle'>【確定】ネットワールド 平松様他</span> <span class='att'>👥5</span>
+      <span class='ecat' style='background:#F6416C'>社外</span>
+    </div>
     </div>
   </div>
-
-  <!-- 6/24 水 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name">WED</span><span class="day-date" style="margin-left:8px">6月24日（水）</span></div>
-      <div class="day-count" style="color:var(--green)">4スロット</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">10:30 – 11:00</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">公共営業定例後 → 管理課MTG前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 – 13:00</div>
-      <div class="free-dur">90分</div>
-      <div class="free-note">管理課MTG後 → コンプライアンス委員会前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">16:30 – 18:00</div>
-      <div class="free-dur">90分</div>
-      <div class="free-note">GMOアワード後 → 防衛装備工業会前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">20:00 – 22:00</div>
-      <div class="free-dur">120分</div>
-      <div class="free-note">意見交換会終了後</div>
-    </div>
+  <div class="legend" style="margin-top:14px;">
+    <div class="leg-item"><div class="leg-dot" style="background:#6C63FF"></div>経営</div><div class="leg-item"><div class="leg-dot" style="background:#00B8A9"></div>営業</div><div class="leg-item"><div class="leg-dot" style="background:#F6416C"></div>社外</div><div class="leg-item"><div class="leg-dot" style="background:#FDCA40"></div>1on1</div><div class="leg-item"><div class="leg-dot" style="background:#FF6B6B"></div>会食</div><div class="leg-item"><div class="leg-dot" style="background:#A8D8EA"></div>移動</div><div class="leg-item"><div class="leg-dot" style="background:#AA96DA"></div>講演</div><div class="leg-item"><div class="leg-dot" style="background:#CCCCCC"></div>ブロック</div>
   </div>
+</div>
 
-  <!-- 6/25 木 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name">THU</span><span class="day-date" style="margin-left:8px">6月25日（木）</span></div>
-      <div class="day-count" style="color:var(--green)">4スロット</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 09:30</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">→ 1on1 Hirano前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:50 – 11:00</div>
-      <div class="free-dur">70分</div>
-      <div class="free-note">1on1 Hirano後 → AIセミナー前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">13:00 – 14:00</div>
-      <div class="free-dur">60分</div>
-      <div class="free-note">フクラス後 → ALSOK定例前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">18:20 – 22:00</div>
-      <div class="free-dur">220分</div>
-      <div class="free-note">1on1 Hao終了後</div>
-    </div>
-  </div>
+<div class="divider"></div>
 
-  <!-- 6/26 金 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name">FRI</span><span class="day-date" style="margin-left:8px">6月26日（金）</span></div>
-      <div class="day-count" style="color:var(--green)">4スロット</div>
+<div class="section">
+  <div class="section-title">📬 要対応アクション</div>
+  <div class="act-section">
+    <div class="act-panel">
+      <div class="act-panel-title">📧 Gmail (4件)</div>
+      <div class='act-item'>
+  <span class='act-icon'>🔴</span>
+  <span class='act-label'>要承認</span>
+  <span class='act-body'>ジョブカン：ラクスル_DM印刷（第15弾・メーカー向け）閲覧可能申請</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🔴</span>
+  <span class='act-label'>要承認</span>
+  <span class='act-body'>ジョブカン：ラクスル_DM印刷（第14弾・小売向け）閲覧可能申請</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🟡</span>
+  <span class='act-label'>確認済</span>
+  <span class='act-body'>NTTドコモ(旧イエラエ)_2026.05利用分 承認完了</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🟢</span>
+  <span class='act-label'>承認完了</span>
+  <span class='act-body'>海外出張：福森大喜-防衛省（出張）承認完了</span>
+</div>
     </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 11:00</div>
-      <div class="free-dur">120分</div>
-      <div class="free-note">→ MGSEC定例前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">12:00 – 12:30</div>
-      <div class="free-dur">30分</div>
-      <div class="free-note">MGSEC後 → フクラス前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">13:00 – 15:00</div>
-      <div class="free-dur">120分</div>
-      <div class="free-note">フクラス後 → Reserved前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">18:00 – 19:00</div>
-      <div class="free-dur">60分</div>
-      <div class="free-note">Reserved後 → 会食前</div>
-    </div>
-  </div>
-
-  <!-- 6/27 土 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name wkd">SAT</span><span class="day-date" style="margin-left:8px">6月27日（土）</span></div>
-      <div class="day-count" style="color:var(--green)">終日空き</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 22:00</div>
-      <div class="free-dur">780分</div>
-      <div class="free-note">休日・予定なし</div>
-    </div>
-  </div>
-
-  <!-- 6/28 日 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name wkd">SUN</span><span class="day-date" style="margin-left:8px">6月28日（日）</span></div>
-      <div class="day-count" style="color:var(--green)">終日空き</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 22:00</div>
-      <div class="free-dur">780分</div>
-      <div class="free-note">休日・予定なし</div>
-    </div>
-  </div>
-
-  <!-- 6/29 月 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <div><span class="day-name">MON</span><span class="day-date" style="margin-left:8px">6月29日（月）</span></div>
-      <div class="day-count" style="color:var(--red)">空きなし</div>
-    </div>
-    <div class="free-ev free-na">
-      <div class="free-time">—</div>
-      <div class="free-dur">0分</div>
-      <div class="free-note">Reserved（終日）+ 連続MTG 16:00-18:30 + 会食 18:30-22:30</div>
+    <div class="act-panel">
+      <div class="act-panel-title">💬 Slack (5件)</div>
+      <div class='act-item'>
+  <span class='act-icon'>🔴</span>
+  <span class='act-from'>寺村亮一</span>
+  <span class='act-body'>採用申請・次回経営会議7/7で事後承認の件 → 要コメント</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🔴</span>
+  <span class='act-from'>小高健士</span>
+  <span class='act-body'>採用申請（月給100万/年収1200万）→ 要承認確認</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🟡</span>
+  <span class='act-from'>阿部慎司</span>
+  <span class='act-body'>富士通様、7月2週目以降スケジュール連絡待ち → 候補日提示</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🟡</span>
+  <span class='act-from'>玉木壮</span>
+  <span class='act-body'>G戦と裏口を足した資料送付 → 要確認</span>
+</div>
+<div class='act-item'>
+  <span class='act-icon'>🟢</span>
+  <span class='act-from'>萩坂拓也</span>
+  <span class='act-body'>「はい、もちろんいきます！」→ 今日1on1で確認</span>
+</div>
     </div>
   </div>
 </div>
 
-<!-- ===== MAIL ===== -->
-<div id="mail" class="section">
-  <div class="sec-title"><em>✉</em>要対応メール（8件）</div>
-
-  <!-- 1: 打刻修正 -->
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">勤務確認｜打刻修正依頼（6月22日）</div>
-      <div class="badge b-red">至急</div>
-    </div>
-    <div class="act-from">noreply@donuts.ne.jp（ジョブカン勤怠管理） — 2026/06/22</div>
-    <div class="act-body">
-      <strong>6月22日に出勤打刻が残ったままです。</strong>マイページより退勤打刻の修正が必要です。<br>
-      <a href="https://id.jobcan.jp/users/sign_in" target="_blank">→ ジョブカンマイページへ</a>
-    </div>
-  </div>
-
-  <!-- 2: 承認依頼 クラウドエース -->
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：クラウドエース株式会社（与信限度額変更）</div>
-      <div class="badge b-red">承認待ち</div>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp（ジョブカン） — 2026/06/22 12:57</div>
-    <div class="act-body">
-      申請者: <strong>中村 彩花（事業管理課）</strong> — 与信限度額の変更申請が進行中。承認が必要です。
-    </div>
-  </div>
-
-  <!-- 3: 承認依頼 FFRIセキュリティ -->
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：株式会社FFRIセキュリティ（与信限度額変更）</div>
-      <div class="badge b-red">承認待ち</div>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp（ジョブカン） — 2026/06/22 12:57</div>
-    <div class="act-body">
-      申請者: <strong>中村 彩花（事業管理課）</strong> — 与信限度額の変更申請が進行中。承認が必要です。
-    </div>
-  </div>
-
-  <!-- 4: 承認依頼 AIHOBS -->
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：株式会社AIHOBS（与信限度額変更）</div>
-      <div class="badge b-red">承認待ち</div>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp（ジョブカン） — 2026/06/22 12:57</div>
-    <div class="act-body">
-      申請者: <strong>中村 彩花（事業管理課）</strong> — 与信限度額の変更申請が進行中。承認が必要です。
-    </div>
-  </div>
-
-  <!-- 5: 休暇申請 7/6 -->
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">日下部 司 — 休暇申請 7月6日（承認待ち）</div>
-      <div class="badge b-amb">承認待ち</div>
-    </div>
-    <div class="act-from">noreply@donuts.ne.jp（ジョブカン勤怠管理） — 2026/06/22 12:28</div>
-    <div class="act-body">
-      <strong>2026年7月6日</strong>の休暇申請が届いています。ジョブカンより承認・否認をお願いします。
-    </div>
-  </div>
-
-  <!-- 6: 休暇申請 7/13 -->
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">日下部 司 — 休暇申請 7月13日（承認待ち）</div>
-      <div class="badge b-amb">承認待ち</div>
-    </div>
-    <div class="act-from">noreply@donuts.ne.jp（ジョブカン勤怠管理） — 2026/06/22 12:28</div>
-    <div class="act-body">
-      <strong>2026年7月13日</strong>の休暇申請が届いています。ジョブカンより承認・否認をお願いします。
-    </div>
-  </div>
-
-  <!-- 7: AI部会 招待更新 IMPORTANT -->
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">招待更新：AI・システム開発部会 第一部（7/17 変更あり）</div>
-      <div class="badge b-blu">要確認</div>
-    </div>
-    <div class="act-from">yasuhiro.togami@gmo-cybersecurity.com — 2026/06/22 21:12 ★IMPORTANT</div>
-    <div class="act-body">
-      <strong>7月17日（金）15:00 〜 17:00</strong> のイベントが更新されました。説明欄に変更あり。フクラス15F C5 / Google Meet。内容を確認のうえ参加可否を更新してください。
-    </div>
-  </div>
-
-  <!-- 8: SCS評価制度 キャンセル -->
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">予定キャンセル：仮) MTG - SCS評価制度（営業本部MTGへ統合）</div>
-      <div class="badge b-amb">invite要確認</div>
-    </div>
-    <div class="act-from">hoshi@gmo-cybersecurity.com — 2026/06/22 12:14</div>
-    <div class="act-body">
-      6月23日（火）22:00のMTG「SCS評価制度」はキャンセルされました。<br>
-      メモ: <strong>「営業本部MTGに統合となりましたので、別途inviteします」</strong><br>
-      新しい招待が届いているか確認してください。
-    </div>
-  </div>
+<div style="padding:16px 24px;font-size:0.72em;color:#444466;text-align:right;">
+  自動生成: 2026/06/25 13:54 JST | Claude Code Routine
 </div>
-
-<!-- ===== SLACK ===== -->
-<div id="slack" class="section">
-  <div class="sec-title"><em>#</em>Slack 要返信（0件）</div>
-  <div class="empty-state">
-    <div class="empty-icon">✓</div>
-    <div>過去7日間（6/16 〜 6/23）に大越宛ての<br>未返信メンションはありませんでした。</div>
-  </div>
-</div>
-
-<script>
-var TODAY='20260623';
-function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
-function injectDoneButtons(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var footer=document.createElement('div');footer.className='act-footer';var btn=document.createElement('button');btn.className='done-btn';btn.textContent='✓ 完了';btn.addEventListener('click',function(){toggleDone(card,i,sec,btn);});footer.appendChild(btn);card.appendChild(footer);});});}
-function toggleDone(card,i,sec,btn){var key='done_'+TODAY+'_'+sec+'_'+i;if(card.classList.contains('done')){card.classList.remove('done');btn.textContent='✓ 完了';btn.classList.remove('is-done');try{localStorage.removeItem(key);}catch(e){}}else{card.classList.add('done');btn.textContent='↩ 戻す';btn.classList.add('is-done');try{localStorage.setItem(key,'1');}catch(e){}}updateBadges();}
-function restoreState(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var key='done_'+TODAY+'_'+sec+'_'+i;try{if(localStorage.getItem(key)==='1'){card.classList.add('done');var btn=card.querySelector('.done-btn');if(btn){btn.textContent='↩ 戻す';btn.classList.add('is-done');}}}catch(e){}});});}
-function updateBadges(){['mail','slack'].forEach(function(sec){var total=document.querySelectorAll('#'+sec+' .act').length;var done=document.querySelectorAll('#'+sec+' .act.done').length;var remaining=total-done;var tabIdx=sec==='mail'?3:4;var badge=document.querySelector('.nav-tab:nth-child('+tabIdx+') .nav-badge');if(badge){badge.textContent=remaining;badge.style.opacity=remaining===0?'0':'1';}});}
-document.addEventListener('DOMContentLoaded',function(){injectDoneButtons();restoreState();updateBadges();});
-</script>
 </body>
 </html>
