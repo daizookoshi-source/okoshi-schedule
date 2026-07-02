@@ -1,629 +1,459 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Okoshi スケジュール</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okoshi Schedule</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070B12;--card:#0E1520;--card2:#131D2B;--border:rgba(180,145,55,0.18);--gold:#C9A840;--gold2:#F0CC6A;--text:#DDE2EC;--text2:#7E8FA6;--text3:#445060;--blue:#4A9EFF;--green:#3DD68C;--red:#FF5F5F;--amber:#FFB340;--purple:#9B8FFF;--teal:#3ECFCF;--orange:#FF8C50}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Segoe UI',sans-serif;line-height:1.5;min-height:100vh}
-.header{background:linear-gradient(135deg,#080F1E 0%,#0F1C30 60%,#0A1525 100%);border-bottom:1px solid var(--border);padding:16px 20px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5)}
-.header-top{display:flex;align-items:flex-start;justify-content:space-between;max-width:900px;margin:0 auto}
-.logo{font-size:20px;font-weight:800;letter-spacing:.5px;line-height:1.2}
-.logo-ok{color:var(--text)}.logo-sch{color:var(--gold2)}
-.logo-jp{color:var(--text2);font-size:13px;font-weight:400;margin-top:2px}
-.header-meta{text-align:right;font-size:11px;color:var(--text3);line-height:1.8}
-.header-meta b{color:var(--text2);font-weight:600}
-.nav{max-width:900px;margin:14px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:0}
-.nav::-webkit-scrollbar{display:none}
-.nav-tab{padding:9px 18px;border-radius:10px 10px 0 0;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s;background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid transparent;border-bottom:none;letter-spacing:.3px}
-.nav-tab.active{background:var(--card2);color:var(--gold2);border-color:var(--border);border-bottom:1px solid var(--card2)}
-.nav-tab:hover:not(.active){background:rgba(255,255,255,0.07);color:var(--text2)}
-.nav-badge{display:inline-block;background:var(--red);color:#fff;border-radius:8px;padding:0 5px;font-size:10px;margin-left:4px;vertical-align:1px}
-.nav-badge.amber{background:var(--amber);color:#070B12}
-.section{display:none;max-width:900px;margin:0 auto;padding:20px 14px 40px}
-.section.active{display:block}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px}
-.chip-n{font-size:22px;font-weight:800;color:var(--gold);line-height:1}
-.chip-l{font-size:11px;color:var(--text2);line-height:1.4}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text3)}
-.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
-.day-hd{padding:12px 18px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.day-name{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px;text-transform:uppercase}
-.day-name.wkd{color:var(--amber)}
-.day-date{font-size:12px;color:var(--text2);margin-left:8px}
-.day-count{font-size:11px;color:var(--text3);background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:8px}
-.ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,0.04);gap:14px;align-items:flex-start;transition:background .15s}
-.ev:last-child{border-bottom:none}
-.ev:hover{background:rgba(255,255,255,0.02)}
-.ev-time{width:110px;flex-shrink:0;font-size:11.5px;color:var(--text2);font-variant-numeric:tabular-nums;padding-top:2px;line-height:1.3}
-.ev-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.ev-body{flex:1;min-width:0}
-.ev-title{font-size:13.5px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ev-meta{font-size:11.5px;color:var(--text3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.c-mgmt .ev-dot{background:var(--gold)}.c-mgmt .ev-title{color:#E8D090}
-.c-sales .ev-dot{background:var(--blue)}
-.c-ext .ev-dot{background:var(--green)}
-.c-1on1 .ev-dot{background:var(--teal)}
-.c-din .ev-dot{background:var(--purple)}.c-din .ev-title{color:#C5BCFF}
-.c-trv .ev-dot{background:var(--amber)}.c-trv .ev-title{color:#FFCF70}
-.c-sym .ev-dot{background:var(--orange)}.c-sym .ev-title{color:#FFAA70}
-.c-blk .ev-dot{background:var(--text3)}.c-blk .ev-title{color:var(--text3)}
-.free-hd{padding:12px 18px;background:rgba(61,214,140,0.06);border-bottom:1px solid rgba(61,214,140,0.12);display:flex;align-items:center;justify-content:space-between}
-.free-ev{display:flex;padding:11px 18px;border-bottom:1px solid rgba(61,214,140,0.08);gap:14px;align-items:center;background:rgba(61,214,140,0.02)}
-.free-ev:last-child{border-bottom:none}
-.free-time{width:130px;flex-shrink:0;font-size:11.5px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700}
-.free-dur{background:rgba(61,214,140,0.12);color:var(--green);font-size:11px;font-weight:800;padding:2px 9px;border-radius:8px;white-space:nowrap;flex-shrink:0}
-.free-note{font-size:12.5px;color:var(--text2);flex:1}
-.free-na .free-dur{background:rgba(255,255,255,0.05);color:var(--text3)}
-.free-na .free-note{color:var(--text3)}
-.act{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:12px;margin-bottom:12px;padding:15px 18px}
-.act.red{border-left-color:var(--red)}.act.blue{border-left-color:var(--blue)}.act.purple{border-left-color:var(--purple)}
-.act-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
-.act-subj{font-size:14px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
-.badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;letter-spacing:.3px}
-.b-red{background:rgba(255,95,95,.14);color:var(--red);border:1px solid rgba(255,95,95,.25)}
-.b-amb{background:rgba(255,179,64,.14);color:var(--amber);border:1px solid rgba(255,179,64,.25)}
-.b-blu{background:rgba(74,158,255,.14);color:var(--blue);border:1px solid rgba(74,158,255,.25)}
-.b-pur{background:rgba(155,143,255,.14);color:var(--purple);border:1px solid rgba(155,143,255,.25)}
-.act-from{font-size:11.5px;color:var(--text3);margin-bottom:5px}
-.act-body{font-size:13px;color:var(--text2);line-height:1.6}
-.act-body strong{color:var(--text);font-weight:600}
-.act-body a{color:var(--blue);text-decoration:none;font-size:12px}
-.act.done{opacity:0.4;border-left-color:var(--text3)!important}
-.act.done .act-subj{text-decoration:line-through;color:var(--text3)}
-.act-footer{display:flex;justify-content:flex-end;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05)}
-.done-btn{font-size:11px;font-weight:700;padding:5px 16px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text3);transition:all .2s;letter-spacing:.4px;user-select:none;font-family:inherit}
-.done-btn:hover:not(.is-done){background:rgba(61,214,140,0.1);border-color:rgba(61,214,140,0.35);color:var(--green)}
-.done-btn.is-done{background:rgba(61,214,140,0.08);border-color:rgba(61,214,140,0.25);color:var(--green)}
-.done-btn.is-done:hover{background:rgba(255,95,95,0.08);border-color:rgba(255,95,95,0.25);color:var(--red)}
-.sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.sec-title em{color:var(--gold);font-style:normal;font-size:15px;vertical-align:-1px;margin-right:6px}
-.usage-tbl{width:100%;border-collapse:collapse;font-size:12px}.usage-tbl th,.usage-tbl td{padding:9px 16px;border-bottom:1px solid rgba(255,255,255,0.05)}.usage-tbl th{font-size:10.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;text-align:right}.usage-tbl th:first-child{text-align:left}.usage-tbl td{text-align:right;color:var(--text)}.usage-tbl td:first-child{color:var(--text2);font-weight:600;text-align:left}.usage-tbl tr:last-child td{border-bottom:none;font-weight:800;color:var(--gold)}.bar{display:inline-block;height:7px;border-radius:3px;min-width:3px;margin-left:5px;vertical-align:middle;opacity:.8}
-@media(max-width:600px){.ev-time,.free-time{width:88px}.header{padding:14px 14px 0}.nav-tab{padding:8px 13px;font-size:11px}.ev,.free-ev{padding:10px 12px;gap:10px}.act,.day-hd{padding:13px 14px}.section{padding:14px 10px 40px}}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:rgba(180,145,55,.3);border-radius:2px}
+:root { color-scheme: light; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  background: #eef1f8;
+  color: #1e2436;
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.hd {
+  background: linear-gradient(135deg, #0f1f5c 0%, #1a237e 60%, #283593 100%);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(15,31,92,0.35);
+}
+.hd-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 56px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.brand { display: flex; align-items: center; gap: 11px; }
+.brand-bars { display: flex; align-items: flex-end; gap: 3px; height: 24px; }
+.b1 { width: 4px; height: 12px; background: #c9860b; border-radius: 2px; }
+.b2 { width: 4px; height: 22px; background: #f9c93e; border-radius: 2px; }
+.b3 { width: 4px; height: 8px;  background: #c9860b; border-radius: 2px; }
+.brand-text { line-height: 1.15; }
+.brand-name { font-size: 15px; font-weight: 800; letter-spacing: 0.13em; color: #fff; text-transform: uppercase; }
+.brand-sub  { font-size: 9px;  font-weight: 500; letter-spacing: 0.2em;  color: rgba(255,255,255,0.45); text-transform: uppercase; }
+
+.hd-center { text-align: center; }
+.hd-day  { font-size: 19px; font-weight: 700; color: #fff; letter-spacing: 0.03em; line-height: 1.1; }
+.hd-date { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; }
+
+.hd-right { display: flex; align-items: center; gap: 10px; }
+.live-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #69f0ae;
+  animation: lpulse 2.2s ease-in-out infinite;
+}
+@keyframes lpulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(105,240,174,0.4); }
+  50%      { box-shadow: 0 0 0 5px rgba(105,240,174,0); }
+}
+.rfbtn {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.85); padding: 6px 14px; border-radius: 7px;
+  cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.2s; white-space: nowrap;
+}
+.rfbtn:hover { background: rgba(255,255,255,0.2); }
+.rfbtn:disabled { opacity: 0.35; cursor: default; }
+
+/* ── Main ── */
+.main { max-width: 1080px; margin: 0 auto; padding: 16px 14px 36px; }
+.mb14 { margin-bottom: 14px; }
+
+/* ── Timeline strip ── */
+.tl-strip {
+  background: #fff; border-radius: 12px; padding: 14px 16px;
+  border: 1px solid #dde3ee; box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+.tl-head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+}
+.sec-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #8896a8;
+}
+.tl-legend { display: flex; align-items: center; gap: 14px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #9aa6b6; }
+.legend-swatch { width: 16px; height: 10px; border-radius: 3px; }
+.ls-busy { background: linear-gradient(90deg,#2563eb,#3b82f6); }
+.ls-free { background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.4); }
+
+.tl-labels {
+  display: flex; justify-content: space-between;
+  font-size: 9px; color: #b0bac8; padding: 0 1px; margin-bottom: 5px;
+}
+.tl-bar {
+  position: relative; height: 44px;
+  background: #f3f5fb; border-radius: 7px; overflow: hidden;
+}
+
+/* ── Grid ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 660px) { .g2 { grid-template-columns: 1fr; } }
+
+/* ── Card ── */
+.card {
+  background: #fff; border-radius: 12px;
+  border: 1px solid #dde3ee; box-shadow: 0 1px 8px rgba(0,0,0,0.05); overflow: hidden;
+}
+.card-hd {
+  display: flex; align-items: center; gap: 9px;
+  padding: 11px 16px 10px; border-bottom: 1px solid #f0f2f9;
+}
+.card-accent { width: 3px; height: 17px; border-radius: 2px; flex-shrink: 0; }
+.card-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8896a8; flex: 1; }
+.card-num {
+  background: #f0f2f9; color: #9aa6b6;
+  font-size: 11px; font-weight: 700; padding: 2px 10px;
+  border-radius: 20px; min-width: 28px; text-align: center;
+}
+.card-num.on { background: #eff6ff; color: #1d4ed8; }
+.card-num.act { background: #fff7ed; color: #c2710c; }
+
+/* ── Event rows ── */
+.evscroll { max-height: 290px; overflow-y: auto; }
+.evscroll::-webkit-scrollbar { width: 3px; }
+.evscroll::-webkit-scrollbar-thumb { background: #dde3ee; border-radius: 2px; }
+
+.ev-row {
+  display: flex; align-items: flex-start; gap: 11px;
+  padding: 9px 16px; border-bottom: 1px solid #f3f5fa;
+  transition: background 0.12s;
+}
+.ev-row:last-child { border-bottom: none; }
+.ev-row:hover { background: #f8f9fd; }
+.ev-time { font-size: 11px; font-weight: 600; color: #1d4ed8; min-width: 90px; padding-top: 2px; letter-spacing: 0.02em; }
+.ev-info { flex: 1; min-width: 0; }
+.ev-name { font-size: 13px; font-weight: 500; color: #1e2436; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ev-loc  { font-size: 11px; color: #8896a8; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── Slot rows ── */
+.slot-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 16px; border-bottom: 1px solid #f3f5fa;
+}
+.slot-row:last-child { border-bottom: none; }
+.slot-bar { width: 4px; height: 38px; background: linear-gradient(180deg,#16a34a,#4ade80); border-radius: 2px; flex-shrink: 0; }
+.slot-time { font-size: 15px; font-weight: 700; color: #16a34a; letter-spacing: 0.01em; }
+.slot-dur  { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+/* ── Action rows ── */
+.act-row {
+  padding: 10px 16px; border-bottom: 1px solid #f3f5fa; transition: background 0.12s;
+}
+.act-row:last-child { border-bottom: none; }
+.act-row:hover { background: #f8f9fd; }
+.act-from  { font-size: 12px; font-weight: 600; color: #1e2436; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 2px; }
+.act-subj  { font-size: 11px; color: #546e7a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 5px; }
+.act-why   {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 700; color: #b45309; letter-spacing: 0.02em;
+}
+.act-why::before { content: '▸'; font-size: 9px; }
+
+/* ── Week grid ── */
+.week-wrap { overflow-x: auto; padding-bottom: 2px; }
+.week-wrap::-webkit-scrollbar { height: 3px; }
+.week-wrap::-webkit-scrollbar-thumb { background: #dde3ee; border-radius: 2px; }
+.week-cols {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 1px; background: #e8edf6; border-radius: 8px;
+  overflow: hidden; min-width: 560px;
+}
+.wk-col { background: #fff; padding: 11px 10px 13px; min-height: 100px; }
+.wk-col.today { background: #f0f4ff; }
+.wk-dow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #b0bac8; margin-bottom: 3px; }
+.wk-num { font-size: 22px; font-weight: 800; color: #1e2436; line-height: 1; margin-bottom: 9px; }
+.wk-col.today .wk-num { color: #1a237e; }
+.wk-ev {
+  display: flex; align-items: flex-start;
+  font-size: 10px; color: #546e7a; margin-bottom: 3px;
+}
+.wk-dot { width: 5px; height: 5px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; margin-top: 3px; margin-right: 5px; }
+.wk-ev-txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.wk-more { font-size: 10px; color: #3b82f6; margin-top: 3px; font-weight: 600; }
+
+/* ── Claude Stats ── */
+.cstat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: #e8edf6; margin: 0 14px 12px; border-radius: 8px; overflow: hidden;
+}
+.cstat { background: #fff; padding: 13px 10px; text-align: center; }
+.cstat-val { font-size: 21px; font-weight: 800; color: #1e2436; line-height: 1.1; letter-spacing: -0.01em; }
+.cstat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8896a8; margin-top: 4px; }
+.cstat-meta {
+  padding: 6px 16px 11px; font-size: 10px; color: #9aa6b6;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.ctabs { display: flex; border-bottom: 1px solid #f0f2f9; }
+.ctab {
+  flex: 1; padding: 8px 4px; text-align: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  color: #9aa6b6; cursor: pointer; border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.ctab.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+.ctab:hover:not(.active) { color: #6d28d9; }
+
+/* ── States ── */
+.loading {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 30px 16px; color: #8896a8; font-size: 12px;
+}
+.spin {
+  width: 14px; height: 14px; border: 2px solid #dde3ee;
+  border-top-color: #1d4ed8; border-radius: 50%;
+  animation: spin 0.7s linear infinite; flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty { padding: 26px 16px; text-align: center; color: #b0bac8; font-size: 12px; }
+.errst { padding: 14px 16px; font-size: 12px; color: #b91c1c; }
+
+/* ── Timeline overlays ── */
+.tl-ev {
+  position: absolute; top: 4px; bottom: 4px;
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  border-radius: 4px; overflow: hidden;
+  display: flex; align-items: center; padding: 0 5px; min-width: 3px;
+}
+.tl-ev-lbl { font-size: 9px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-free { position: absolute; top: 0; bottom: 0; background: rgba(22,163,74,0.1); border-left: 2px solid rgba(22,163,74,0.35); }
+.tl-now {
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: #dc2626; z-index: 5;
+}
+.tl-now::before {
+  content: ''; position: absolute; top: -3px; left: -4px;
+  width: 10px; height: 10px; border-radius: 50%; background: #dc2626;
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-top">
-    <div>
-      <div class="logo"><span class="logo-ok">Okoshi</span><span class="logo-sch"> Schedule</span></div>
-      <div class="logo-jp">2026年6月30日（火）— 7月6日（月）</div>
-    </div>
-    <div class="header-meta">
-      <div>Updated: <b>2026/06/30</b></div>
-      <div><b>23</b> Events &nbsp;|&nbsp; <b>8</b> Mails &nbsp;|&nbsp; <b>5</b> Slack</div>
-    </div>
-  </div>
-  <nav class="nav">
-    <div class="nav-tab active" onclick="show('today',this)">📅 今日</div>
-    <div class="nav-tab" onclick="show('week',this)">📆 今週</div>
-    <div class="nav-tab" onclick="show('free',this)">🕐 空き時間</div>
-    <div class="nav-tab" onclick="show('mail',this)">📧 Mail<span class="nav-badge">8</span></div>
-    <div class="nav-tab" onclick="show('slack',this)">💬 Slack<span class="nav-badge amber">5</span></div>
-    <div class="nav-tab" onclick="show('claude',this)">📊 Claude</div>
-  </nav>
-</div>
-
-<!-- TODAY -->
-<div id="today" class="section active">
-  <div class="chips">
-    <div class="chip"><span class="chip-n">5</span><span class="chip-l">今日のイベント<br>6月30日（火）</span></div>
-    <div class="chip"><span class="chip-n">8</span><span class="chip-l">未対応メール<br>要承認・要確認</span></div>
-    <div class="chip"><span class="chip-n">5</span><span class="chip-l">Slack<br>要返信</span></div>
-  </div>
-  <div class="legend">
-    <span class="leg"><span class="leg-dot" style="background:var(--gold)"></span>経営</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--blue)"></span>営業</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--green)"></span>社外</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--teal)"></span>1on1</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--purple)"></span>会食</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--amber)"></span>移動</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--orange)"></span>講演</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--text3)"></span>ブロック</span>
-  </div>
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">TUE</span><span class="day-date">6月30日（火）</span></div>
-      <div class="day-count">5件</div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">09:30 – 10:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Internal：Proofpoint ビジネススキームと商流について</div>
-        <div class="ev-meta">Zoom</div>
+<header class="hd">
+  <div class="hd-inner">
+    <div class="brand">
+      <div class="brand-bars"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+      <div class="brand-text">
+        <div class="brand-name">Okoshi Schedule</div>
+        <div class="brand-sub">Executive Briefing</div>
       </div>
     </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 14:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">MTG</div>
-        <div class="ev-meta">Zoom</div>
+    <div class="hd-center">
+      <div class="hd-day" id="hdDay">—</div>
+      <div class="hd-date" id="hdDate">—</div>
+    </div>
+    <div class="hd-right">
+      <div class="live-badge"><div class="live-dot"></div><span id="hdUpdated">—</span></div>
+      <button class="rfbtn" id="rfBtn" onclick="loadAll()">↻ Refresh</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="tl-strip mb14">
+    <div class="tl-head">
+      <span class="sec-lbl">Today's Timeline &nbsp;9:00 – 19:00</span>
+      <div class="tl-legend">
+        <div class="legend-item"><div class="legend-swatch ls-busy"></div>Busy</div>
+        <div class="legend-item"><div class="legend-swatch ls-free"></div>Free</div>
       </div>
     </div>
-    <div class="ev c-ext">
-      <div class="ev-time">15:00 – 15:45</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">Call with Pru</div>
-        <div class="ev-meta"></div>
+    <div class="tl-labels"><span>9:00</span><span>11:00</span><span>13:00</span><span>15:00</span><span>17:00</span><span>19:00</span></div>
+    <div class="tl-bar" id="tlBar"><div class="loading"><div class="spin"></div></div></div>
+  </div>
+
+  <div class="g2 mb14">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-accent" style="background:#2563eb"></div>
+        <div class="card-lbl">Today's Schedule</div>
+        <div class="card-num" id="todayN">—</div>
+      </div>
+      <div class="evscroll" id="todayList"><div class="loading"><div class="spin"></div>Loading…</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-accent" style="background:#16a34a"></div>
+        <div class="card-lbl">Free Slots (30 min+)</div>
+        <div class="card-num" id="slotsN">—</div>
+      </div>
+      <div id="slotsList"><div class="loading"><div class="spin"></div>Calculating…</div></div>
+    </div>
+  </div>
+
+  <div class="g2 mb14">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-accent" style="background:#c2710c"></div>
+        <div class="card-lbl">📧 Action — Email</div>
+        <div class="card-num" id="emailN">—</div>
+      </div>
+      <div class="evscroll" id="emailList"><div class="loading"><div class="spin"></div>Scanning…</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-accent" style="background:#7c3aed"></div>
+        <div class="card-lbl">💬 Action — Slack</div>
+        <div class="card-num" id="slackN">—</div>
+      </div>
+      <div class="evscroll" id="slackList"><div class="loading"><div class="spin"></div>Scanning…</div></div>
+    </div>
+  </div>
+
+  <div class="card mb14">
+    <div class="card-hd">
+      <div class="card-accent" style="background:linear-gradient(180deg,#7c3aed,#a855f7)"></div>
+      <div class="card-lbl">🤖 Claude 利用履歴</div>
+      <div class="card-num" id="claudeSessionN">—</div>
+    </div>
+    <div id="claudeStatsBody"><div class="loading"><div class="spin"></div>—</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-accent" style="background:#94a3b8"></div>
+      <div class="card-lbl">This Week</div>
+    </div>
+    <div style="padding:12px 14px">
+      <div class="week-wrap">
+        <div class="week-cols" id="weekCols">
+          <div style="grid-column:span 7"><div class="loading"><div class="spin"></div>Loading…</div></div>
+        </div>
       </div>
     </div>
-    <div class="ev c-sales">
-      <div class="ev-time">16:00 – 16:30</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">キープ資料提出</div>
-        <div class="ev-meta"></div>
-      </div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">18:00 – 19:00</div>
-      <div class="ev-dot"></div>
-      <div class="ev-body">
-        <div class="ev-title">【mtg】顔パス1カウント ＠フクラス10F</div>
-        <div class="ev-meta">Zoom / フクラス10F</div>
-      </div>
-    </div>
   </div>
-</div>
+</main>
 
-<!-- WEEK -->
-<div id="week" class="section">
-  <div class="legend">
-    <span class="leg"><span class="leg-dot" style="background:var(--gold)"></span>経営</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--blue)"></span>営業</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--green)"></span>社外</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--teal)"></span>1on1</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--purple)"></span>会食</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--amber)"></span>移動</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--orange)"></span>講演</span>
-    <span class="leg"><span class="leg-dot" style="background:var(--text3)"></span>ブロック</span>
-  </div>
-
-  <!-- 6/30 TUE -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">TUE</span><span class="day-date">6月30日（火）</span></div>
-      <div class="day-count">5件</div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">09:30 – 10:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Internal：Proofpoint ビジネススキームと商流について</div><div class="ev-meta">Zoom</div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">14:00 – 14:30</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">MTG</div><div class="ev-meta">Zoom</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">15:00 – 15:45</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Call with Pru</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">16:00 – 16:30</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">キープ資料提出</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">18:00 – 19:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【mtg】顔パス1カウント ＠フクラス10F</div><div class="ev-meta">Zoom / フクラス10F</div></div>
-    </div>
-  </div>
-
-  <!-- 7/1 WED -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">WED</span><span class="day-date">7月1日（水）</span></div>
-      <div class="day-count">6件</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">08:05 – 08:35</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-mgmt">
-      <div class="ev-time">11:00 – 11:30</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">AI・システム開発 年俸制 事前共有</div><div class="ev-meta">セルリアンタワー 7-A会議室</div></div>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">12:30 – 13:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">フクラス</div><div class="ev-meta">セルリアン → フクラス（移動）</div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">12:30 – 13:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">「イエラエ/SOCキープ」</div><div class="ev-meta">Zoom</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">14:00 – 15:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【確定】ALSOK様×GMOアリーナ</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">17:30 – 18:30</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">【確定】ネットワールド 平松様他</div><div class="ev-meta"></div></div>
-    </div>
-  </div>
-
-  <!-- 7/2 THU -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">THU</span><span class="day-date">7月2日（木）</span></div>
-      <div class="day-count">9件</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">08:05 – 08:35</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">09:30 – 09:50</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1 on 1 Hirano/Okoshi</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-sales">
-      <div class="ev-time">11:40 – 12:10</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">「ネットのセキュリティもGMO」</div><div class="ev-meta">Zoom</div></div>
-    </div>
-    <div class="ev c-trv">
-      <div class="ev-time">12:30 – 13:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">フクラス</div><div class="ev-meta">移動</div></div>
-    </div>
-    <div class="ev c-ext">
-      <div class="ev-time">16:00 – 17:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">NVC来社</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:20 – 17:40</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1on1 with 中山</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">17:40 – 18:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1on1 with 萩坂</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-din">
-      <div class="ev-time">18:00 – 20:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">NVC会食</div><div class="ev-meta"></div></div>
-    </div>
-    <div class="ev c-1on1">
-      <div class="ev-time">18:00 – 18:20</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">1 on 1 Hao/Okoshi</div><div class="ev-meta"></div></div>
-    </div>
-  </div>
-
-  <!-- 7/3 FRI -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">FRI</span><span class="day-date">7月3日（金）</span></div>
-      <div class="day-count">1件</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">終日</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">PTO</div><div class="ev-meta">有給休暇</div></div>
-    </div>
-  </div>
-
-  <!-- 7/4 SAT -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name wkd">SAT</span><span class="day-date">7月4日（土）</span></div>
-      <div class="day-count">休日</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">–</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title" style="color:var(--text3)">予定なし</div><div class="ev-meta"></div></div>
-    </div>
-  </div>
-
-  <!-- 7/5 SUN -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name wkd">SUN</span><span class="day-date">7月5日（日）</span></div>
-      <div class="day-count">休日</div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">–</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title" style="color:var(--text3)">予定なし</div><div class="ev-meta"></div></div>
-    </div>
-  </div>
-
-  <!-- 7/6 MON -->
-  <div class="day-card">
-    <div class="day-hd">
-      <div><span class="day-name">MON</span><span class="day-date">7月6日（月）</span></div>
-      <div class="day-count">2件</div>
-    </div>
-    <div class="ev c-sym">
-      <div class="ev-time">08:00 – 18:00</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">2026 Half Summit</div><div class="ev-meta">終日イベント</div></div>
-    </div>
-    <div class="ev c-blk">
-      <div class="ev-time">08:05 – 08:35</div><div class="ev-dot"></div>
-      <div class="ev-body"><div class="ev-title">Office</div><div class="ev-meta"></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- FREE TIME -->
-<div id="free" class="section">
-  <div class="sec-title"><em>🕐</em> 空き時間スロット（30分以上）</div>
-
-  <!-- 6/30 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--green)">TUE — 6月30日（火）</span>
-      <span style="font-size:11px;color:var(--text3)">3スロット</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">10:00 – 14:00</div>
-      <div class="free-dur">4h</div>
-      <div class="free-note">Proofpoint MTG終了後 → MTG前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">14:30 – 15:00</div>
-      <div class="free-dur">30m</div>
-      <div class="free-note">MTG終了後 → Call with Pru前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">16:30 – 18:00</div>
-      <div class="free-dur">1h30m</div>
-      <div class="free-note">キープ資料提出後 → 顔パスMTG前</div>
-    </div>
-  </div>
-
-  <!-- 7/1 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--green)">WED — 7月1日（水）</span>
-      <span style="font-size:11px;color:var(--text3)">3スロット</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:00 – 11:00</div>
-      <div class="free-dur">2h</div>
-      <div class="free-note">朝 → AI年俸制共有前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">11:30 – 12:30</div>
-      <div class="free-dur">1h</div>
-      <div class="free-note">AI年俸制共有後 → フクラス移動前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">15:00 – 17:30</div>
-      <div class="free-dur">2h30m</div>
-      <div class="free-note">ALSOK商談後 → ネットワールド前</div>
-    </div>
-  </div>
-
-  <!-- 7/2 -->
-  <div class="day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--green)">THU — 7月2日（木）</span>
-      <span style="font-size:11px;color:var(--text3)">3スロット</span>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">09:50 – 11:40</div>
-      <div class="free-dur">1h50m</div>
-      <div class="free-note">1on1 Hirano後 → ネットのセキュリティMTG前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">13:00 – 16:00</div>
-      <div class="free-dur">3h</div>
-      <div class="free-note">フクラス後 → NVC来社前</div>
-    </div>
-    <div class="free-ev">
-      <div class="free-time">20:00 – 22:00</div>
-      <div class="free-dur">2h</div>
-      <div class="free-note">NVC会食後</div>
-    </div>
-  </div>
-
-  <!-- 7/3 PTO -->
-  <div class="day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--text3)">FRI — 7月3日（金）</span>
-      <span style="font-size:11px;color:var(--text3)">PTO</span>
-    </div>
-    <div class="free-ev free-na">
-      <div class="free-time">終日</div>
-      <div class="free-dur">PTO</div>
-      <div class="free-note" style="color:var(--text3)">有給休暇</div>
-    </div>
-  </div>
-
-  <!-- 7/6 Half Summit -->
-  <div class="day-card">
-    <div class="free-hd">
-      <span style="font-size:13px;font-weight:800;color:var(--text3)">MON — 7月6日（月）</span>
-      <span style="font-size:11px;color:var(--text3)">Half Summit</span>
-    </div>
-    <div class="free-ev free-na">
-      <div class="free-time">08:00 – 18:00</div>
-      <div class="free-dur">終日</div>
-      <div class="free-note" style="color:var(--text3)">2026 Half Summit</div>
-    </div>
-  </div>
-</div>
-
-<!-- MAIL -->
-<div id="mail" class="section">
-  <div class="sec-title"><em>📧</em> Mail — 要対応（8件）</div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：羽尾 和弘_2026/06</div>
-      <span class="badge b-red">承認依頼</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:10 JST</div>
-    <div class="act-body">申請者：<strong>羽尾 和弘（アライアンス営業部 部長）</strong>  件名：羽尾 和弘_2026/06<br>ジョブカンから月次経費精算の承認依頼が届いています。</div>
-  </div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：日本KFC御中_覚書_20260600</div>
-      <span class="badge b-red">書類承認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:07 JST</div>
-    <div class="act-body">申請者：<strong>宮本 由紀（営業事務チーム）</strong><br>日本ケンタッキー・フライド・チキン株式会社御中 覚書（2026年6月付）の承認依頼。</div>
-  </div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">承認依頼：トビラシステムズ御中_業務委託基本契約書_20260700</div>
-      <span class="badge b-red">契約書承認</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:07 JST</div>
-    <div class="act-body">申請者：<strong>岡田 直子（営業事務チーム）</strong><br>トビラシステムズ株式会社御中 業務委託基本契約書（2026年7月付）の承認依頼。</div>
-  </div>
-
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">産業医6月分_期限7/31｜支払承認（新規登録）</div>
-      <span class="badge b-amb">期限 7/31</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 10:14 JST</div>
-    <div class="act-body">申請者：<strong>尊保 麻紀</strong>  種類：支払の承認（支払依頼）<br>産業医6月分の支払依頼。<strong>期限：7月31日</strong>。閲覧可能な申請として新規登録されました。</div>
-  </div>
-
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">GMOブランドセキュリティ_請求書_2026年7月末支払期日</div>
-      <span class="badge b-amb">7月末期限</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:35 JST</div>
-    <div class="act-body">申請者：<strong>森井 亜香音</strong>  種類：支払の承認（支払依頼）<br>GMOブランドセキュリティ株式会社への7月末支払期日請求書。要確認・承認。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">新規取引承認：株式会社クスリのアオキ</div>
-      <span class="badge b-blu">新規取引</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:41 JST</div>
-    <div class="act-body">申請者：<strong>岡田 直子</strong>  種類：新規取引の承認と与信限度額の決定<br>株式会社クスリのアオキ（新規取引先）の審査・与信設定の承認依頼。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">新規取引承認：株式会社ジーアイテック</div>
-      <span class="badge b-blu">新規取引</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:34 JST</div>
-    <div class="act-body">申請者：<strong>岡田 直子</strong>  種類：新規取引の承認と与信限度額の決定<br>株式会社ジーアイテックの新規取引審査・与信限度額決定の承認依頼。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">新規取引承認：株式会社RED FRASCO</div>
-      <span class="badge b-blu">新規取引</span>
-    </div>
-    <div class="act-from">jobcanwf@donuts.ne.jp &nbsp;|&nbsp; 2026/06/30 09:31 JST</div>
-    <div class="act-body">申請者：<strong>岡田 直子</strong>  種類：新規取引の承認と与信限度額の決定<br>株式会社RED FRASCOの新規取引審査・与信限度額決定の承認依頼。</div>
-  </div>
-</div>
-
-<!-- SLACK -->
-<div id="slack" class="section">
-  <div class="sec-title"><em>💬</em> Slack — 要返信（5件）</div>
-
-  <div class="act red">
-    <div class="act-hd">
-      <div class="act-subj">立替申請ID69671/69672 の確認依頼</div>
-      <span class="badge b-red">要承認</span>
-    </div>
-    <div class="act-from">山谷 夏季（Group DM） &nbsp;|&nbsp; 2026/06/29 19:02 JST</div>
-    <div class="act-body">
-      <strong>①ID69671</strong>：サイバー防衛シンポジウム熱海2026 参加費用の領収書未発行取引確認。PSSMarketからの料金受領メールの再確認も依頼。<br>
-      <strong>②ID69672</strong>：同シンポジウム出張申請。出張申請承認後に立替処理を進めるため、<strong>出張申請の先行承認</strong>が必要。
-    </div>
-  </div>
-
-  <div class="act">
-    <div class="act-hd">
-      <div class="act-subj">熱海出張の立替経費処理 — 出張申請依頼</div>
-      <span class="badge b-amb">要対応</span>
-    </div>
-    <div class="act-from">矢作 健登（Group DM：尊保・鈴木・小林・奥野・玉木） &nbsp;|&nbsp; 2026/06/29 17:00 JST</div>
-    <div class="act-body">熱海出張の件、立替経費処理にあたり<strong>出張申請</strong>が必要。お忙しいところ恐れ入りますが対応をお願いしたい旨の連絡。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">莵田常務から連絡が来たら即相談</div>
-      <span class="badge b-blu">要確認</span>
-    </div>
-    <div class="act-from">並木 俊之 / GMOインターネット（DM） &nbsp;|&nbsp; 2026/06/29 16:31 JST</div>
-    <div class="act-body">莵田常務から連絡があり次第、<strong>即座に相談</strong>してほしいとの依頼。内容は連絡待ちで詳細不明。</div>
-  </div>
-
-  <div class="act blue">
-    <div class="act-hd">
-      <div class="act-subj">書類修正前版の確認（奥野 史一）</div>
-      <span class="badge b-blu">要確認</span>
-    </div>
-    <div class="act-from">奥野 史一（Group DM：鈴木・小林・奥野・玉木） &nbsp;|&nbsp; 2026/06/29 17:07 JST</div>
-    <div class="act-body">修正前の書類内容の共有。大越さんと会話して変更した内容（Q3からの変更・売上目標配分）を反映前の版として確認依頼。</div>
-  </div>
-
-  <div class="act purple">
-    <div class="act-hd">
-      <div class="act-subj">Hardening 2026 宿泊候補 — GOサイン依頼</div>
-      <span class="badge b-pur">要判断</span>
-    </div>
-    <div class="act-from">鈴木 正泰（DM） &nbsp;|&nbsp; 2026/06/29 08:10 JST</div>
-    <div class="act-body">
-      Hardening 2026 Agentic Collapse（10/5〜8、山形 鶴岡）の宿泊候補を提示。<strong>GOサインが出たら押さえる</strong>予定。<br>
-      候補①TABIST竹葉新葉亭 4泊48,640円 ②湯の浜ホテル 4泊51,480円 ③OMO5鶴岡 4泊34,560円<br>
-      特に10/7（水）ネットワーキングパーティへの<strong>参加が必須</strong>。
-    </div>
-  </div>
-</div>
-
-<!-- CLAUDE -->
-<div id="claude" class="section">
-  <div class="sec-title"><em>📊</em> Claude利用状況（直近7日間）</div>
-  <div class="chips">
-    <div class="chip"><span class="chip-n">0</span><span class="chip-l">Chat<br>会話数</span></div>
-    <div class="chip"><span class="chip-n">0</span><span class="chip-l">Projects<br>利用数</span></div>
-    <div class="chip"><span class="chip-n">0</span><span class="chip-l">Code<br>セッション</span></div>
-  </div>
-  <div class="day-card">
-    <table class="usage-tbl">
-      <thead>
-        <tr><th>日付</th><th>Chat</th><th>Projects</th><th>Code</th><th>合計</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>2026-06-30</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-29</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-28</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-27</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-26</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-25</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2026-06-24</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-      </tbody>
-      <tfoot>
-        <tr><td>合計</td><td>0</td><td>0</td><td>0</td><td style="font-weight:800;color:var(--gold)">0</td></tr>
-      </tfoot>
-    </table>
-  </div>
-  <p style="font-size:11px;color:var(--text3);text-align:center;margin-top:12px">
-    ※ このデータはGoogleスプレッドシートへの手動入力に基づきます<br>
-    <a href="https://docs.google.com/spreadsheets/d/1k3FqJRLaCI0ZkZrGE4bZoQunc_6pwvGEq3czHK2RkFE/edit" style="color:var(--blue)" target="_blank">📝 データを入力する</a>
-  </p>
-</div>
-
+<script type="application/json" id="claude-stats-data">{"today":{"inputTokens":2095283,"outputTokens":28028,"codeLines":0,"sessions":2},"week":{"inputTokens":6092966,"outputTokens":120459,"codeLines":630,"sessions":2},"month":{"inputTokens":2095283,"outputTokens":28028,"codeLines":0,"sessions":2},"total":{"inputTokens":63186442,"outputTokens":1195043,"codeLines":4186,"sessions":11},"updatedAt":"2026-07-02T11:30:11"}</script>
 <script>
-var TODAY='20260630';
-function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
-function injectDoneButtons(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var footer=document.createElement('div');footer.className='act-footer';var btn=document.createElement('button');btn.className='done-btn';btn.textContent='✓ 完了';btn.addEventListener('click',function(){toggleDone(card,i,sec,btn);});footer.appendChild(btn);card.appendChild(footer);});});}
-function toggleDone(card,i,sec,btn){var key='done_'+TODAY+'_'+sec+'_'+i;if(card.classList.contains('done')){card.classList.remove('done');btn.textContent='✓ 完了';btn.classList.remove('is-done');try{localStorage.removeItem(key);}catch(e){}}else{card.classList.add('done');btn.textContent='↩ 戻す';btn.classList.add('is-done');try{localStorage.setItem(key,'1');}catch(e){}}updateBadges();}
-function restoreState(){['mail','slack'].forEach(sec=>{document.querySelectorAll('#'+sec+' .act').forEach(function(card,i){var key='done_'+TODAY+'_'+sec+'_'+i;try{if(localStorage.getItem(key)==='1'){card.classList.add('done');var btn=card.querySelector('.done-btn');if(btn){btn.textContent='↩ 戻す';btn.classList.add('is-done');}}}catch(e){}});});}
-function updateBadges(){['mail','slack'].forEach(function(sec){var total=document.querySelectorAll('#'+sec+' .act').length;var done=document.querySelectorAll('#'+sec+' .act.done').length;var remaining=total-done;var tabIdx=sec==='mail'?4:5;var badge=document.querySelector('.nav-tab:nth-child('+tabIdx+') .nav-badge');if(badge){badge.textContent=remaining;badge.style.opacity=remaining===0?'0':'1';}});}
-document.addEventListener('DOMContentLoaded',function(){injectDoneButtons();restoreState();updateBadges();});
+function jst(d){const ms=(d||new Date()).getTime();return new Date(ms+new Date().getTimezoneOffset()*60000+9*3600000);}
+function fmtD(d){return d.toISOString().slice(0,10);}
+function tm(iso){if(!iso)return 0;const d=jst(new Date(iso));return d.getHours()*60+d.getMinutes();}
+function hhmm(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+const WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const WDS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function updHd(){const n=jst();document.getElementById('hdDay').textContent=WD[n.getDay()];document.getElementById('hdDate').textContent=`${MON[n.getMonth()]} ${n.getDate()}, ${n.getFullYear()}`;document.getElementById('hdUpdated').textContent=`Updated ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+
+function freeSlots(evs,ds){
+  const S=9*60,E=19*60,MIN=30;
+  const busy=evs.filter(e=>(e.start?.dateTime||e.start?.date||'').startsWith(ds)).map(e=>({s:Math.max(S,tm(e.start?.dateTime)),e:Math.min(E,tm(e.end?.dateTime))})).filter(b=>b.e>b.s).sort((a,b)=>a.s-b.s);
+  const mg=[];for(const b of busy){if(!mg.length||b.s>=mg.at(-1).e)mg.push({...b});else mg.at(-1).e=Math.max(mg.at(-1).e,b.e);}
+  const gaps=[];let cur=S;for(const b of mg){if(b.s-cur>=MIN)gaps.push({s:cur,e:b.s});cur=Math.max(cur,b.e);}if(E-cur>=MIN)gaps.push({s:cur,e:E});return gaps;
+}
+
+function renderTL(evs,ds){
+  const bar=document.getElementById('tlBar');const S=9*60,E=19*60,T=E-S;bar.innerHTML='';
+  for(const g of freeSlots(evs,ds)){const el=document.createElement('div');el.className='tl-free';el.style.cssText=`left:${(g.s-S)/T*100}%;width:${(g.e-g.s)/T*100}%;position:absolute;top:0;bottom:0`;bar.appendChild(el);}
+  for(const ev of evs.filter(e=>(e.start?.dateTime||e.start?.date||'').startsWith(ds))){
+    const s=Math.max(S,tm(ev.start?.dateTime)||S),e=Math.min(E,tm(ev.end?.dateTime)||E);
+    if(s>=E||e<=S||e<=s)continue;
+    const el=document.createElement('div');el.className='tl-ev';el.style.cssText=`left:${(s-S)/T*100}%;width:${Math.max(0.5,(e-s)/T*100)}%;position:absolute;top:4px;bottom:4px`;el.title=ev.summary||'';el.innerHTML=`<span class="tl-ev-lbl">${ev.summary||''}</span>`;bar.appendChild(el);
+  }
+  const now=jst();const nowM=now.getHours()*60+now.getMinutes();
+  if(nowM>=S&&nowM<=E&&fmtD(now)===ds){const el=document.createElement('div');el.className='tl-now';el.style.cssText=`left:${(nowM-S)/T*100}%;position:absolute`;bar.appendChild(el);}
+}
+
+function renderToday(evs,ds){
+  const el=document.getElementById('todayList'),badge=document.getElementById('todayN');
+  const day=evs.filter(e=>(e.start?.dateTime||e.start?.date||'').startsWith(ds)).sort((a,b)=>new Date(a.start?.dateTime||a.start?.date)-new Date(b.start?.dateTime||b.start?.date));
+  badge.textContent=day.length;if(day.length)badge.classList.add('on');
+  if(!day.length){el.innerHTML='<div class="empty">No events today</div>';return;}
+  el.innerHTML=day.map(ev=>{const t=ev.start?.dateTime?`${hhmm(tm(ev.start.dateTime))} – ${hhmm(tm(ev.end.dateTime))}`:'All day';return`<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-info"><div class="ev-name">${ev.summary||'(No title)'}</div>${ev.location?`<div class="ev-loc">📍 ${ev.location}</div>`:''}</div></div>`;}).join('');
+}
+
+function renderSlots(evs,ds){
+  const el=document.getElementById('slotsList'),badge=document.getElementById('slotsN');
+  const slots=freeSlots(evs,ds);badge.textContent=slots.length;
+  if(!slots.length){el.innerHTML='<div class="empty">No free slots today</div>';return;}
+  el.innerHTML=slots.map(g=>`<div class="slot-row"><div class="slot-bar"></div><div><div class="slot-time">${hhmm(g.s)} – ${hhmm(g.e)}</div><div class="slot-dur">${g.e-g.s} minutes available</div></div></div>`).join('');
+}
+
+function renderWeek(evs,startD){
+  const grid=document.getElementById('weekCols'),todayStr=fmtD(jst());let html='';
+  for(let i=0;i<7;i++){
+    const d=new Date(startD.getTime()+i*86400000),ds=fmtD(jst(d)),isT=ds===todayStr;
+    const day=evs.filter(e=>(e.start?.dateTime||e.start?.date||'').startsWith(ds)).sort((a,b)=>new Date(a.start?.dateTime||a.start?.date)-new Date(b.start?.dateTime||b.start?.date));
+    const evH=day.slice(0,4).map(ev=>{const t=ev.start?.dateTime?hhmm(tm(ev.start.dateTime)):'';return`<div class="wk-ev"><span class="wk-dot"></span><span class="wk-ev-txt">${t} ${ev.summary||''}</span></div>`;}).join('');
+    const more=day.length>4?`<div class="wk-more">+${day.length-4} more</div>`:'';
+    html+=`<div class="wk-col${isT?' today':''}"><div class="wk-dow">${WDS[d.getDay()]}</div><div class="wk-num">${d.getDate()}</div>${evH}${more}</div>`;
+  }
+  grid.innerHTML=html;
+}
+
+function renderActions(listId,badgeId,items){
+  const el=document.getElementById(listId),badge=document.getElementById(badgeId);
+  badge.textContent=items.length;if(items.length)badge.classList.add('act');
+  if(!items.length){el.innerHTML='<div class="empty">No action items ✓</div>';return;}
+  el.innerHTML=items.map(it=>`<div class="act-row"><div class="act-from">${it.sender||it.from||'—'}</div><div class="act-subj">${it.subject||it.content||'—'}</div><div class="act-why">${it.reason||''}</div></div>`).join('');
+}
+
+function parse(r){try{return r.structuredContent??JSON.parse(r.content?.[0]?.text??'{}')}catch(e){return{};}}
+function parseJSON(s){try{return JSON.parse(s.replace(/```(?:json)?|```/g,'').trim())}catch(e){return null;}}
+
+async function loadAll(){
+  const btn=document.getElementById('rfBtn');btn.disabled=true;btn.textContent='…';
+  const now=jst(),todayStr=fmtD(now),end7=new Date(now.getTime()+7*86400000),ago14=fmtD(new Date(now.getTime()-14*86400000));
+
+  let evs=[];
+  try{const r=await window.cowork.callMcpTool('mcp__83ca95b3-3483-4795-8f90-bed315f8a560__list_events',{startTime:todayStr+'T00:00:00+09:00',endTime:fmtD(end7)+'T23:59:59+09:00',timeZone:'Asia/Tokyo',orderBy:'startTime',pageSize:100});evs=parse(r).events||[];}catch(e){console.error('cal',e);}
+  renderTL(evs,todayStr);renderToday(evs,todayStr);renderSlots(evs,todayStr);renderWeek(evs,now);
+
+  try{
+    const r=await window.cowork.callMcpTool('mcp__f1fbed84-41d2-41a5-b28b-ced37c54b2cf__search_threads',{query:'to:daizo.okoshi@gmo-cybersecurity.com is:unread newer_than:14d -in:sent -in:draft',pageSize:25});
+    const threads=(parse(r).threads||[]).filter(t=>!/(ml3\.sbcr|sbcr\.jp|noreply@donuts|benefits@gmo|skilljar|academy-support)/.test(t.messages?.[0]?.sender||''));
+    if(threads.length){try{const resp=await window.cowork.askClaude('以下のメールスレッドから大越 大造さんが返信すべきものを抽出し、JSONのみ返すこと（他テキスト不要）。形式:[{"sender":"名前","subject":"件名","reason":"要対応理由(15字以内)"}]',[{type:'text',text:JSON.stringify(threads.slice(0,12).map(t=>({sender:t.messages[0].sender,subject:t.messages[0].subject,snippet:t.messages[0].snippet?.slice(0,80)})))}]);const items=parseJSON(resp);renderActions('emailList','emailN',Array.isArray(items)?items:[]);}catch{renderActions('emailList','emailN',threads.slice(0,8).map(t=>({sender:t.messages?.[0]?.sender||'',subject:t.messages?.[0]?.subject||'',reason:'要確認'})));}}else renderActions('emailList','emailN',[]);
+  }catch(e){document.getElementById('emailList').innerHTML='<div class="errst">Error loading email</div>';}
+
+  try{
+    const r=await window.cowork.callMcpTool('mcp__8f740023-b6d5-460f-a738-ce4022e49ec3__slack_search_public_and_private',{query:`to:me after:${ago14}`,sort:'timestamp',sort_dir:'desc',limit:15,include_context:false});
+    const raw=parse(r).results||'';
+    if(raw.length>100){try{const resp=await window.cowork.askClaude('以下のSlackメッセージから大越 大造（U04CBH60NGJ）が返信すべきものを抽出しJSONのみ返すこと。Salesforceボット等除外。形式:[{"sender":"名前","subject":"内容(25字)","reason":"理由(15字)"}]',[{type:'text',text:raw.slice(0,6000)}]);const items=parseJSON(resp);renderActions('slackList','slackN',Array.isArray(items)?items:[]);}catch{renderActions('slackList','slackN',[]); } }else renderActions('slackList','slackN',[]);
+  }catch(e){document.getElementById('slackList').innerHTML='<div class="errst">Error loading Slack</div>';}
+
+  updHd();btn.disabled=false;btn.textContent='↻ Refresh';
+}
+
+function fmtTok(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return Math.round(n/1e3)+'K';return n.toLocaleString();}
+
+function renderClaudeStats(){
+  const el=document.getElementById('claude-stats-data');
+  let data=null;try{data=el?JSON.parse(el.textContent):null;}catch(e){}
+  const body=document.getElementById('claudeStatsBody'),badge=document.getElementById('claudeSessionN');
+  if(!data||!data.total){body.innerHTML='<div class="empty">統計データ未取得（次回ルーティン時に更新）</div>';return;}
+  badge.textContent=data.total.sessions;badge.classList.add('on');
+  const upd=data.updatedAt?data.updatedAt.replace('T',' ').slice(0,16):'—';
+  const PERIODS=[{k:'today',l:'今日'},{k:'week',l:'今週'},{k:'month',l:'今月'},{k:'total',l:'累計'}];
+  function statHtml(k){const d=data[k];return `<div class="cstat-grid">
+    <div class="cstat"><div class="cstat-val">${fmtTok(d.inputTokens)}</div><div class="cstat-lbl">入力 Token</div></div>
+    <div class="cstat"><div class="cstat-val">${fmtTok(d.outputTokens)}</div><div class="cstat-lbl">出力 Token</div></div>
+    <div class="cstat"><div class="cstat-val">${d.codeLines.toLocaleString()}</div><div class="cstat-lbl">コードライン数</div></div>
+  </div><div class="cstat-meta"><span>Updated ${upd}</span><span>${d.sessions} sessions</span></div>`;}
+  const tabs=PERIODS.map((p,i)=>`<div class="ctab${i===0?' active':''}" onclick="cTabSwitch(this,'${p.k}')">${p.l}</div>`).join('');
+  body.innerHTML=`<div class="ctabs">${tabs}</div><div id="cstat-body">${statHtml('today')}</div>`;
+  window.cTabSwitch=function(t,k){document.querySelectorAll('.ctab').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('cstat-body').innerHTML=statHtml(k);document.getElementById('claudeSessionN').textContent=data[k].sessions;};
+}
+
+updHd();renderClaudeStats();loadAll();
 </script>
 </body>
 </html>
+              
